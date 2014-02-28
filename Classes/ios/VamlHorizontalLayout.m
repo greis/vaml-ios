@@ -27,10 +27,6 @@
 }
 
 -(void)didAddAllSubviews {
-  NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:0 constant:0];
-  constraint.priority = UILayoutPriorityDefaultLow;
-  [self addConstraint:constraint];
-  
   NSMutableDictionary *views = [NSMutableDictionary dictionary];
   NSMutableArray *subviewsName = [NSMutableArray array];
   
