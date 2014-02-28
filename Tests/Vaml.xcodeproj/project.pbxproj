@@ -21,6 +21,9 @@
 		11CBA2F418C12C8F003287A2 /* VamlAttributesParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2F118C12C8F003287A2 /* VamlAttributesParserSpec.m */; };
 		11CBA2F518C12C8F003287A2 /* VamlTokenizerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2F218C12C8F003287A2 /* VamlTokenizerSpec.m */; };
 		11CBA2F618C12C8F003287A2 /* VamlTreeBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2F318C12C8F003287A2 /* VamlTreeBuilderSpec.m */; };
+		11CBA2F918C12E94003287A2 /* ExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2F818C12E94003287A2 /* ExampleController.m */; };
+		11CBA2FB18C12F11003287A2 /* example.vaml in Resources */ = {isa = PBXBuildFile; fileRef = 11CBA2FA18C12F11003287A2 /* example.vaml */; };
+		11CBA2FD18C12F30003287A2 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 11CBA2FC18C12F30003287A2 /* default.css */; };
 		C1C816124E6E447F83B88009 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BFA337EFB1496F8828EFE2 /* libPods.a */; };
 		DE9DC799C2A8499895D37C4B /* libPods-VamlTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E482A245944048EEA6B959FD /* libPods-VamlTests.a */; };
 /* End PBXBuildFile section */
@@ -54,6 +57,10 @@
 		11CBA2F118C12C8F003287A2 /* VamlAttributesParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VamlAttributesParserSpec.m; sourceTree = "<group>"; };
 		11CBA2F218C12C8F003287A2 /* VamlTokenizerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VamlTokenizerSpec.m; sourceTree = "<group>"; };
 		11CBA2F318C12C8F003287A2 /* VamlTreeBuilderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VamlTreeBuilderSpec.m; sourceTree = "<group>"; };
+		11CBA2F718C12E94003287A2 /* ExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleController.h; sourceTree = "<group>"; };
+		11CBA2F818C12E94003287A2 /* ExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleController.m; sourceTree = "<group>"; };
+		11CBA2FA18C12F11003287A2 /* example.vaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.vaml; sourceTree = "<group>"; };
+		11CBA2FC18C12F30003287A2 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		8E802BE03BC3464BAC12D36C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		C6E9730FEC7946EAB4ABC721 /* Pods-VamlTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VamlTests.xcconfig"; path = "Pods/Pods-VamlTests.xcconfig"; sourceTree = "<group>"; };
 		E482A245944048EEA6B959FD /* libPods-VamlTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VamlTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +134,8 @@
 				11CBA2D218C12BA0003287A2 /* AppDelegate.m */,
 				11CBA2D418C12BA0003287A2 /* Images.xcassets */,
 				11CBA2C918C12BA0003287A2 /* Supporting Files */,
+				11CBA2F718C12E94003287A2 /* ExampleController.h */,
+				11CBA2F818C12E94003287A2 /* ExampleController.m */,
 			);
 			path = Vaml;
 			sourceTree = "<group>";
@@ -138,6 +147,8 @@
 				11CBA2CB18C12BA0003287A2 /* InfoPlist.strings */,
 				11CBA2CE18C12BA0003287A2 /* main.m */,
 				11CBA2D018C12BA0003287A2 /* Vaml-Prefix.pch */,
+				11CBA2FA18C12F11003287A2 /* example.vaml */,
+				11CBA2FC18C12F30003287A2 /* default.css */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -241,8 +252,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11CBA2FB18C12F11003287A2 /* example.vaml in Resources */,
 				11CBA2CD18C12BA0003287A2 /* InfoPlist.strings in Resources */,
 				11CBA2D518C12BA0003287A2 /* Images.xcassets in Resources */,
+				11CBA2FD18C12F30003287A2 /* default.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11CBA2D318C12BA0003287A2 /* AppDelegate.m in Sources */,
+				11CBA2F918C12E94003287A2 /* ExampleController.m in Sources */,
 				11CBA2CF18C12BA0003287A2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

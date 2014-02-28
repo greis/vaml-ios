@@ -1,0 +1,18 @@
+#input_group {
+  background-color: orange;
+  border-color    : blue;
+  border-radius   : 10px;
+  border-width    : 2px;
+  border-style: solid;
+}
+
+#username_input {
+  text: "username";
+  background-color: #0f0;
+}
+
+#ok_button {
+  text: "OK";
+  color: #000;
+  background-color: #ff0;
+}

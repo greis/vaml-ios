@@ -1,0 +1,5 @@
+%root
+  %vertical#input_group
+    %label#label(text="Name:")
+    %button#username_input
+    %button#ok_button
