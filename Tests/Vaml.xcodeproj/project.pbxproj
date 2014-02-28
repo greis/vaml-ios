@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11CBA2C318C12BA0003287A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C218C12BA0003287A2 /* Foundation.framework */; };
+		11CBA2C518C12BA0003287A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */; };
+		11CBA2C718C12BA0003287A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C618C12BA0003287A2 /* UIKit.framework */; };
+		11CBA2CD18C12BA0003287A2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 11CBA2CB18C12BA0003287A2 /* InfoPlist.strings */; };
+		11CBA2CF18C12BA0003287A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2CE18C12BA0003287A2 /* main.m */; };
+		11CBA2D318C12BA0003287A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2D218C12BA0003287A2 /* AppDelegate.m */; };
+		11CBA2D518C12BA0003287A2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11CBA2D418C12BA0003287A2 /* Images.xcassets */; };
+		11CBA2DC18C12BA0003287A2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2DB18C12BA0003287A2 /* XCTest.framework */; };
+		11CBA2DD18C12BA0003287A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C218C12BA0003287A2 /* Foundation.framework */; };
+		11CBA2DE18C12BA0003287A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C618C12BA0003287A2 /* UIKit.framework */; };
+		11CBA2E618C12BA0003287A2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 11CBA2E418C12BA0003287A2 /* InfoPlist.strings */; };
+		11CBA2F418C12C8F003287A2 /* VamlAttributesParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2F118C12C8F003287A2 /* VamlAttributesParserSpec.m */; };
+		11CBA2F518C12C8F003287A2 /* VamlTokenizerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2F218C12C8F003287A2 /* VamlTokenizerSpec.m */; };
+		11CBA2F618C12C8F003287A2 /* VamlTreeBuilderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11CBA2F318C12C8F003287A2 /* VamlTreeBuilderSpec.m */; };
+		C1C816124E6E447F83B88009 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BFA337EFB1496F8828EFE2 /* libPods.a */; };
+		DE9DC799C2A8499895D37C4B /* libPods-VamlTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E482A245944048EEA6B959FD /* libPods-VamlTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11CBA2DF18C12BA0003287A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11CBA2B718C12BA0003287A2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11CBA2BE18C12BA0003287A2;
+			remoteInfo = Vaml;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		11CBA2BF18C12BA0003287A2 /* Vaml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaml.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11CBA2C218C12BA0003287A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		11CBA2C618C12BA0003287A2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		11CBA2CA18C12BA0003287A2 /* Vaml-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Vaml-Info.plist"; sourceTree = "<group>"; };
+		11CBA2CC18C12BA0003287A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		11CBA2CE18C12BA0003287A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		11CBA2D018C12BA0003287A2 /* Vaml-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vaml-Prefix.pch"; sourceTree = "<group>"; };
+		11CBA2D118C12BA0003287A2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		11CBA2D218C12BA0003287A2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		11CBA2D418C12BA0003287A2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		11CBA2DA18C12BA0003287A2 /* VamlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VamlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		11CBA2DB18C12BA0003287A2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		11CBA2E318C12BA0003287A2 /* VamlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VamlTests-Info.plist"; sourceTree = "<group>"; };
+		11CBA2E518C12BA0003287A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		11CBA2F118C12C8F003287A2 /* VamlAttributesParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VamlAttributesParserSpec.m; sourceTree = "<group>"; };
+		11CBA2F218C12C8F003287A2 /* VamlTokenizerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VamlTokenizerSpec.m; sourceTree = "<group>"; };
+		11CBA2F318C12C8F003287A2 /* VamlTreeBuilderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VamlTreeBuilderSpec.m; sourceTree = "<group>"; };
+		8E802BE03BC3464BAC12D36C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C6E9730FEC7946EAB4ABC721 /* Pods-VamlTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VamlTests.xcconfig"; path = "Pods/Pods-VamlTests.xcconfig"; sourceTree = "<group>"; };
+		E482A245944048EEA6B959FD /* libPods-VamlTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VamlTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0BFA337EFB1496F8828EFE2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11CBA2BC18C12BA0003287A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11CBA2C518C12BA0003287A2 /* CoreGraphics.framework in Frameworks */,
+				11CBA2C718C12BA0003287A2 /* UIKit.framework in Frameworks */,
+				11CBA2C318C12BA0003287A2 /* Foundation.framework in Frameworks */,
+				C1C816124E6E447F83B88009 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11CBA2D718C12BA0003287A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11CBA2DC18C12BA0003287A2 /* XCTest.framework in Frameworks */,
+				11CBA2DE18C12BA0003287A2 /* UIKit.framework in Frameworks */,
+				11CBA2DD18C12BA0003287A2 /* Foundation.framework in Frameworks */,
+				DE9DC799C2A8499895D37C4B /* libPods-VamlTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11CBA2B618C12BA0003287A2 = {
+			isa = PBXGroup;
+			children = (
+				11CBA2C818C12BA0003287A2 /* Vaml */,
+				11CBA2E118C12BA0003287A2 /* VamlTests */,
+				11CBA2C118C12BA0003287A2 /* Frameworks */,
+				11CBA2C018C12BA0003287A2 /* Products */,
+				8E802BE03BC3464BAC12D36C /* Pods.xcconfig */,
+				C6E9730FEC7946EAB4ABC721 /* Pods-VamlTests.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		11CBA2C018C12BA0003287A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11CBA2BF18C12BA0003287A2 /* Vaml.app */,
+				11CBA2DA18C12BA0003287A2 /* VamlTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11CBA2C118C12BA0003287A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11CBA2C218C12BA0003287A2 /* Foundation.framework */,
+				11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */,
+				11CBA2C618C12BA0003287A2 /* UIKit.framework */,
+				11CBA2DB18C12BA0003287A2 /* XCTest.framework */,
+				F0BFA337EFB1496F8828EFE2 /* libPods.a */,
+				E482A245944048EEA6B959FD /* libPods-VamlTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		11CBA2C818C12BA0003287A2 /* Vaml */ = {
+			isa = PBXGroup;
+			children = (
+				11CBA2D118C12BA0003287A2 /* AppDelegate.h */,
+				11CBA2D218C12BA0003287A2 /* AppDelegate.m */,
+				11CBA2D418C12BA0003287A2 /* Images.xcassets */,
+				11CBA2C918C12BA0003287A2 /* Supporting Files */,
+			);
+			path = Vaml;
+			sourceTree = "<group>";
+		};
+		11CBA2C918C12BA0003287A2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				11CBA2CA18C12BA0003287A2 /* Vaml-Info.plist */,
+				11CBA2CB18C12BA0003287A2 /* InfoPlist.strings */,
+				11CBA2CE18C12BA0003287A2 /* main.m */,
+				11CBA2D018C12BA0003287A2 /* Vaml-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		11CBA2E118C12BA0003287A2 /* VamlTests */ = {
+			isa = PBXGroup;
+			children = (
+				11CBA2F118C12C8F003287A2 /* VamlAttributesParserSpec.m */,
+				11CBA2F218C12C8F003287A2 /* VamlTokenizerSpec.m */,
+				11CBA2F318C12C8F003287A2 /* VamlTreeBuilderSpec.m */,
+				11CBA2E218C12BA0003287A2 /* Supporting Files */,
+			);
+			path = VamlTests;
+			sourceTree = "<group>";
+		};
+		11CBA2E218C12BA0003287A2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				11CBA2E318C12BA0003287A2 /* VamlTests-Info.plist */,
+				11CBA2E418C12BA0003287A2 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11CBA2BE18C12BA0003287A2 /* Vaml */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11CBA2EB18C12BA0003287A2 /* Build configuration list for PBXNativeTarget "Vaml" */;
+			buildPhases = (
+				893FF2771B5E4B9BBB03ADFD /* Check Pods Manifest.lock */,
+				11CBA2BB18C12BA0003287A2 /* Sources */,
+				11CBA2BC18C12BA0003287A2 /* Frameworks */,
+				11CBA2BD18C12BA0003287A2 /* Resources */,
+				39118D151E52484D8C08C31E /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Vaml;
+			productName = Vaml;
+			productReference = 11CBA2BF18C12BA0003287A2 /* Vaml.app */;
+			productType = "com.apple.product-type.application";
+		};
+		11CBA2D918C12BA0003287A2 /* VamlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11CBA2EE18C12BA0003287A2 /* Build configuration list for PBXNativeTarget "VamlTests" */;
+			buildPhases = (
+				9E9FB130E4AF4D7CB37484D5 /* Check Pods Manifest.lock */,
+				11CBA2D618C12BA0003287A2 /* Sources */,
+				11CBA2D718C12BA0003287A2 /* Frameworks */,
+				11CBA2D818C12BA0003287A2 /* Resources */,
+				C5695D4D045949EFA3EFB025 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11CBA2E018C12BA0003287A2 /* PBXTargetDependency */,
+			);
+			name = VamlTests;
+			productName = VamlTests;
+			productReference = 11CBA2DA18C12BA0003287A2 /* VamlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11CBA2B718C12BA0003287A2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Gabriel Reis";
+				TargetAttributes = {
+					11CBA2D918C12BA0003287A2 = {
+						TestTargetID = 11CBA2BE18C12BA0003287A2;
+					};
+				};
+			};
+			buildConfigurationList = 11CBA2BA18C12BA0003287A2 /* Build configuration list for PBXProject "Vaml" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 11CBA2B618C12BA0003287A2;
+			productRefGroup = 11CBA2C018C12BA0003287A2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11CBA2BE18C12BA0003287A2 /* Vaml */,
+				11CBA2D918C12BA0003287A2 /* VamlTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11CBA2BD18C12BA0003287A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11CBA2CD18C12BA0003287A2 /* InfoPlist.strings in Resources */,
+				11CBA2D518C12BA0003287A2 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11CBA2D818C12BA0003287A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11CBA2E618C12BA0003287A2 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		39118D151E52484D8C08C31E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		893FF2771B5E4B9BBB03ADFD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9E9FB130E4AF4D7CB37484D5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C5695D4D045949EFA3EFB025 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-VamlTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11CBA2BB18C12BA0003287A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11CBA2D318C12BA0003287A2 /* AppDelegate.m in Sources */,
+				11CBA2CF18C12BA0003287A2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11CBA2D618C12BA0003287A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11CBA2F518C12C8F003287A2 /* VamlTokenizerSpec.m in Sources */,
+				11CBA2F418C12C8F003287A2 /* VamlAttributesParserSpec.m in Sources */,
+				11CBA2F618C12C8F003287A2 /* VamlTreeBuilderSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		11CBA2E018C12BA0003287A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11CBA2BE18C12BA0003287A2 /* Vaml */;
+			targetProxy = 11CBA2DF18C12BA0003287A2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		11CBA2CB18C12BA0003287A2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11CBA2CC18C12BA0003287A2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		11CBA2E418C12BA0003287A2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				11CBA2E518C12BA0003287A2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		11CBA2E918C12BA0003287A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		11CBA2EA18C12BA0003287A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11CBA2EC18C12BA0003287A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E802BE03BC3464BAC12D36C /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Vaml/Vaml-Prefix.pch";
+				INFOPLIST_FILE = "Vaml/Vaml-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		11CBA2ED18C12BA0003287A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E802BE03BC3464BAC12D36C /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Vaml/Vaml-Prefix.pch";
+				INFOPLIST_FILE = "Vaml/Vaml-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		11CBA2EF18C12BA0003287A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6E9730FEC7946EAB4ABC721 /* Pods-VamlTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Vaml.app/Vaml";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Vaml/Vaml-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "VamlTests/VamlTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		11CBA2F018C12BA0003287A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6E9730FEC7946EAB4ABC721 /* Pods-VamlTests.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Vaml.app/Vaml";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Vaml/Vaml-Prefix.pch";
+				INFOPLIST_FILE = "VamlTests/VamlTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11CBA2BA18C12BA0003287A2 /* Build configuration list for PBXProject "Vaml" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11CBA2E918C12BA0003287A2 /* Debug */,
+				11CBA2EA18C12BA0003287A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11CBA2EB18C12BA0003287A2 /* Build configuration list for PBXNativeTarget "Vaml" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11CBA2EC18C12BA0003287A2 /* Debug */,
+				11CBA2ED18C12BA0003287A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11CBA2EE18C12BA0003287A2 /* Build configuration list for PBXNativeTarget "VamlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11CBA2EF18C12BA0003287A2 /* Debug */,
+				11CBA2F018C12BA0003287A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 11CBA2B718C12BA0003287A2 /* Project object */;
+}
