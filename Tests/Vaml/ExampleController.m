@@ -10,7 +10,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [Vaml layout:@"example" view:self.view];
-  [self.view.subviews[0] setCenter:self.view.center];
 }
 
 @end

@@ -1,11 +1,3 @@
-//
-//  HamlViews.m
-//  HamlViews
-//
-//  Created by Gabriel Reis on 2/21/14.
-//  Copyright (c) 2014 Gabriel Reis. All rights reserved.
-//
-
 #import "Vaml.h"
 #import <PixateFreestyle/PixateFreestyle.h>
 #import "VamlHorizontalLayout.h"
@@ -13,6 +5,8 @@
 #import "VamlTokenizer.h"
 #import "VamlTreeBuilder.h"
 #import "UIView+Vaml.h"
+#import "VamlContext.h"
+#import "VamlConstraintsHandler.h"
 
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
@@ -23,15 +17,19 @@
   NSArray *tokens = [tokenizer tokenize];
   VamlTreeBuilder *treeBuilder = [[VamlTreeBuilder alloc] initWithTokens:tokens];
   NSDictionary *tree = [treeBuilder build];
-  [self addChildren:tree[@"children"] to:view];
+  VamlContext *context = [[VamlContext alloc] init];
+  [context addView:view];
+  [self addChildren:tree[@"children"] to:view context:context];
+  [VamlConstraintsHandler addConstraintsTo:view context:context];
 }
 
-+(void)addChildren:(NSArray *)children to:(UIView *)view {
++(void)addChildren:(NSArray *)children to:(UIView *)view context:(VamlContext *)context {
   for (NSDictionary *child in children) {
     UIView *subview = [self viewFromData:child];
     [view addSubview:subview];
+    [context addView:subview];
     if (child[@"children"]) {
-      [self addChildren:child[@"children"] to:subview];
+      [self addChildren:child[@"children"] to:subview context:context];
     }
   }
   SEL selector = NSSelectorFromString(@"didAddAllSubviews");

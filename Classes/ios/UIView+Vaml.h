@@ -6,4 +6,6 @@
 
 -(NSString *)vamlId;
 
+-(NSDictionary *)vamlAttrs;
+
 @end

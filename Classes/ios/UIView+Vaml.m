@@ -21,5 +21,10 @@ static char const * const VamlDataKey = "VamlData";
   return identifier;
 }
 
+-(NSDictionary *)vamlAttrs {
+  NSDictionary *attrs = self.vamlData[@"attrs"];
+  return attrs ? attrs : @{};
+}
+
 
 @end

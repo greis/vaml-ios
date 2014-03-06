@@ -8,4 +8,5 @@ Pod::Spec.new do |s|
   s.exclude_files = 'Classes/Exclude'
   s.requires_arc = true
   s.dependency 'PixateFreestyle', '~> 2.1'
+  s.dependency 'ConstraintFormatter', '~> 1.0'
 end

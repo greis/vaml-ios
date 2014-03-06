@@ -3,3 +3,4 @@
     %label(text="Name:")
     %button#username_input
     %button#ok_button
+  %label(text="ABC" left="input_group.right" baseline="input_group.top")
