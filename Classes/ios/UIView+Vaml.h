@@ -2,7 +2,7 @@
 
 @interface UIView (Vaml)
 
-@property(nonatomic) NSDictionary *vamlData;
+-(void)setVamlData:(NSDictionary *)vamlData;
 
 -(NSString *)vamlId;
 

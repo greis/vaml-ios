@@ -7,7 +7,6 @@
 //
 
 #import "VamlHorizontalLayout.h"
-#import <PixateFreestyle/PixateFreestyle.h>
 #import "UIView+Vaml.h"
 
 @implementation VamlHorizontalLayout

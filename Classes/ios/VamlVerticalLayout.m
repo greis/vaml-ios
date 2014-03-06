@@ -1,5 +1,4 @@
 #import "VamlVerticalLayout.h"
-#import <PixateFreestyle/PixateFreestyle.h>
 #import "UIView+Vaml.h"
 
 @implementation VamlVerticalLayout

@@ -1,5 +1,4 @@
 #import "Vaml.h"
-#import <PixateFreestyle/PixateFreestyle.h>
 #import "VamlHorizontalLayout.h"
 #import "VamlVerticalLayout.h"
 #import "VamlTokenizer.h"
@@ -64,8 +63,6 @@
   }
   
   [view setVamlData:data];
-  [view setStyleId:data[@"id"]];
-  [view setStyleClass:[data[@"classes"] componentsJoinedByString:@" "]];
   return view;
 }
 

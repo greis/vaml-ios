@@ -1,6 +1,7 @@
 platform :ios, '6.0'
 
 pod 'vaml', :path => '../'
+pod 'PixateFreestyle', '2.1'
 
 target :VamlTests, :exclusive => true do
   pod 'Kiwi/XCTest', git: 'https://github.com/allending/Kiwi.git'
