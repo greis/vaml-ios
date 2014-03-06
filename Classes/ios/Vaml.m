@@ -17,6 +17,7 @@
   VamlTreeBuilder *treeBuilder = [[VamlTreeBuilder alloc] initWithTokens:tokens];
   NSDictionary *tree = [treeBuilder build];
   VamlContext *context = [[VamlContext alloc] init];
+  [view setVamlData:tree];
   [context addView:view];
   [self addChildren:tree[@"children"] to:view context:context];
   [VamlConstraintsHandler addConstraintsTo:view context:context];
