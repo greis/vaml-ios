@@ -1,30 +1,17 @@
 #import "VamlVerticalLayout.h"
 #import <PixateFreestyle/PixateFreestyle.h>
-
-@interface VamlVerticalLayout ()
-
-@property(nonatomic, strong) NSDictionary *data;
-
-@end
+#import "UIView+Vaml.h"
 
 @implementation VamlVerticalLayout
 
-- (id)initWithData:(NSDictionary *)data {
-  self = [super init];
-  if (self) {
-    [self setData:data];
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-  }
-  return self;
-}
-
 -(void)didAddAllSubviews {
+  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
   NSMutableDictionary *views = [NSMutableDictionary dictionary];
   NSMutableArray *subviewsName = [NSMutableArray array];
   
   for (UIView *view in self.subviews) {
-    [subviewsName addObject:view.styleId];
-    views[view.styleId] = view;
+    [subviewsName addObject:view.vamlId];
+    views[view.vamlId] = view;
     [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [view setTranslatesAutoresizingMaskIntoConstraints:NO];
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:view attribute:NSLayoutAttributeWidth multiplier:1 constant:10];

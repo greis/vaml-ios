@@ -12,6 +12,7 @@
 #import "VamlVerticalLayout.h"
 #import "VamlTokenizer.h"
 #import "VamlTreeBuilder.h"
+#import "UIView+Vaml.h"
 
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
@@ -54,16 +55,17 @@
     UIButton *button = [[UIButton alloc] init];
     view = button;
   } else if ([tag isEqualToString:@"horizontal"]) {
-    VamlHorizontalLayout *layout = [[VamlHorizontalLayout alloc] initWithData:data];
+    VamlHorizontalLayout *layout = [[VamlHorizontalLayout alloc] init];
     view = layout;
   } else if ([tag isEqualToString:@"vertical"]) {
-    VamlVerticalLayout *layout = [[VamlVerticalLayout alloc] initWithData:data];
+    VamlVerticalLayout *layout = [[VamlVerticalLayout alloc] init];
     view = layout;
   } else {
     view = [[UIView alloc] init];
     NSLog(@"tag not implemented: %@", tag);
   }
   
+  [view setVamlData:data];
   [view setStyleId:data[@"id"]];
   [view setStyleClass:[data[@"classes"] componentsJoinedByString:@" "]];
   return view;

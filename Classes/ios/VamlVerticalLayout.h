@@ -2,6 +2,4 @@
 
 @interface VamlVerticalLayout : UIView
 
-- (id)initWithData:(NSDictionary *)data;
-
 @end

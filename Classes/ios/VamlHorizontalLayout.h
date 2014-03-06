@@ -10,6 +10,4 @@
 
 @interface VamlHorizontalLayout : UIView
 
-- (id)initWithData:(NSDictionary *)data;
-
 @end
