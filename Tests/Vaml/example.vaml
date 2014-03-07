@@ -1,5 +1,5 @@
-%root
-  %vertical#input_group(center="parent")
+%root#root
+  %vertical#input_group(centerX="parent" centerY="root.centerY")
     %label(text="Name:")
     %button#username_input
     %button#ok_button

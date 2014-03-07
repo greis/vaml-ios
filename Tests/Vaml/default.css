@@ -16,3 +16,7 @@
   color: #000;
   background-color: #ff0;
 }
+
+#root {
+  background-color: gray;
+}
