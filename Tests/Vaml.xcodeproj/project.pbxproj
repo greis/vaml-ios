@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1155416218CA17DF00C8D729 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1155416118CA17DF00C8D729 /* CustomView.m */; };
 		11CBA2C318C12BA0003287A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C218C12BA0003287A2 /* Foundation.framework */; };
 		11CBA2C518C12BA0003287A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */; };
 		11CBA2C718C12BA0003287A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C618C12BA0003287A2 /* UIKit.framework */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1155416018CA17DF00C8D729 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
+		1155416118CA17DF00C8D729 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
 		11CBA2BF18C12BA0003287A2 /* Vaml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaml.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CBA2C218C12BA0003287A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -136,6 +139,8 @@
 				11CBA2C918C12BA0003287A2 /* Supporting Files */,
 				11CBA2F718C12E94003287A2 /* ExampleController.h */,
 				11CBA2F818C12E94003287A2 /* ExampleController.m */,
+				1155416018CA17DF00C8D729 /* CustomView.h */,
+				1155416118CA17DF00C8D729 /* CustomView.m */,
 			);
 			path = Vaml;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11CBA2D318C12BA0003287A2 /* AppDelegate.m in Sources */,
+				1155416218CA17DF00C8D729 /* CustomView.m in Sources */,
 				11CBA2F918C12E94003287A2 /* ExampleController.m in Sources */,
 				11CBA2CF18C12BA0003287A2 /* main.m in Sources */,
 			);

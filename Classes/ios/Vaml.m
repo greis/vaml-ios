@@ -27,8 +27,10 @@
   if (children) {
     for (NSDictionary *child in children) {
       UIView *subview = [VamlViewFactory viewFromData:child];
-      [view addSubview:subview];
-      [self setVamlData:child to:subview context:context];
+      if (subview) {
+        [view addSubview:subview];
+        [self setVamlData:child to:subview context:context];
+      }
     }
     SEL selector = NSSelectorFromString(@"didAddAllSubviews");
     if ([view respondsToSelector:selector]) {

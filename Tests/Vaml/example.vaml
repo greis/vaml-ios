@@ -3,4 +3,7 @@
     %label(text="Name:")
     %button#username_input
     %button#ok_button
+    %view(type="CustomView")
   %label(text="ABC" left="input_group.right" baseline="input_group.top")
+  %notimplemented
+  %view(type="notimplemented")

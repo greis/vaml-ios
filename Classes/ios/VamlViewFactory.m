@@ -23,9 +23,16 @@
   } else if ([tag isEqualToString:@"vertical"]) {
     VamlVerticalLayout *layout = [[VamlVerticalLayout alloc] init];
     view = layout;
+  } else if ([tag isEqualToString:@"view"]) {
+    NSString *type = data[@"attrs"][@"type"];
+    Class class = NSClassFromString(type);
+    if (class) {
+      view = [[class alloc] init];
+    } else {
+      NSLog(@"Custom view not found: %@", type);
+    }
   } else {
-    view = [[UIView alloc] init];
-    NSLog(@"tag not implemented: %@", tag);
+    NSLog(@"Tag not implemented: %@", tag);
   }
   return view;
 }
