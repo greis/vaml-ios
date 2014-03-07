@@ -1,0 +1,4 @@
+%root(size="layout.size")
+  %horizontal#layout(center="parent")
+    %label(text="Hello")
+    %label(text="World")

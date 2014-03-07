@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1155416218CA17DF00C8D729 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1155416118CA17DF00C8D729 /* CustomView.m */; };
+		1155416518CA644800C8D729 /* CustomViewFromVaml.m in Sources */ = {isa = PBXBuildFile; fileRef = 1155416418CA644800C8D729 /* CustomViewFromVaml.m */; };
+		1155416718CA649300C8D729 /* custom-view.vaml in Resources */ = {isa = PBXBuildFile; fileRef = 1155416618CA649300C8D729 /* custom-view.vaml */; };
 		11CBA2C318C12BA0003287A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C218C12BA0003287A2 /* Foundation.framework */; };
 		11CBA2C518C12BA0003287A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */; };
 		11CBA2C718C12BA0003287A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C618C12BA0003287A2 /* UIKit.framework */; };
@@ -42,6 +44,9 @@
 /* Begin PBXFileReference section */
 		1155416018CA17DF00C8D729 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
 		1155416118CA17DF00C8D729 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
+		1155416318CA644800C8D729 /* CustomViewFromVaml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewFromVaml.h; sourceTree = "<group>"; };
+		1155416418CA644800C8D729 /* CustomViewFromVaml.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewFromVaml.m; sourceTree = "<group>"; };
+		1155416618CA649300C8D729 /* custom-view.vaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "custom-view.vaml"; sourceTree = "<group>"; };
 		11CBA2BF18C12BA0003287A2 /* Vaml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaml.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CBA2C218C12BA0003287A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +146,8 @@
 				11CBA2F818C12E94003287A2 /* ExampleController.m */,
 				1155416018CA17DF00C8D729 /* CustomView.h */,
 				1155416118CA17DF00C8D729 /* CustomView.m */,
+				1155416318CA644800C8D729 /* CustomViewFromVaml.h */,
+				1155416418CA644800C8D729 /* CustomViewFromVaml.m */,
 			);
 			path = Vaml;
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 				11CBA2D018C12BA0003287A2 /* Vaml-Prefix.pch */,
 				11CBA2FA18C12F11003287A2 /* example.vaml */,
 				11CBA2FC18C12F30003287A2 /* default.css */,
+				1155416618CA649300C8D729 /* custom-view.vaml */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 			files = (
 				11CBA2FB18C12F11003287A2 /* example.vaml in Resources */,
 				11CBA2CD18C12BA0003287A2 /* InfoPlist.strings in Resources */,
+				1155416718CA649300C8D729 /* custom-view.vaml in Resources */,
 				11CBA2D518C12BA0003287A2 /* Images.xcassets in Resources */,
 				11CBA2FD18C12F30003287A2 /* default.css in Resources */,
 			);
@@ -344,6 +353,7 @@
 			files = (
 				11CBA2D318C12BA0003287A2 /* AppDelegate.m in Sources */,
 				1155416218CA17DF00C8D729 /* CustomView.m in Sources */,
+				1155416518CA644800C8D729 /* CustomViewFromVaml.m in Sources */,
 				11CBA2F918C12E94003287A2 /* ExampleController.m in Sources */,
 				11CBA2CF18C12BA0003287A2 /* main.m in Sources */,
 			);
