@@ -3,41 +3,25 @@
 #import "VamlHorizontalLayout.h"
 #import "VamlContext.h"
 
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
 @implementation VamlViewFactory
 
 +(UIView *)viewFromData:(NSDictionary *)data context:(VamlContext *)context {
- NSString *tag = data[@"tag"];
-  UIView *view;
-  if ([tag isEqualToString:@"label"]) {
-    UILabel *label = [[UILabel alloc] init];
-    [label setText:data[@"attrs"][@"text"]];
-    view = label;
-  } else if ([tag isEqualToString:@"textfield"]) {
-    UITextField *textField = [[UITextField alloc] init];
-    view = textField;
-  } else if ([tag isEqualToString:@"button"]) {
-    view = [self buttonFromData:data context:context];
-  } else if ([tag isEqualToString:@"horizontal"]) {
-    VamlHorizontalLayout *layout = [[VamlHorizontalLayout alloc] init];
-    view = layout;
-  } else if ([tag isEqualToString:@"vertical"]) {
-    VamlVerticalLayout *layout = [[VamlVerticalLayout alloc] init];
-    view = layout;
-  } else if ([tag isEqualToString:@"view"]) {
-    NSString *type = data[@"attrs"][@"type"];
-    Class class = NSClassFromString(type);
-    if (class) {
-      view = [[class alloc] init];
-    } else {
-      NSLog(@"Custom view not found: %@", type);
-    }
+  NSString *tag = data[@"tag"];
+  SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@WithData:context:", tag]);
+  
+  if ([self respondsToSelector:selector]) {
+    return [self performSelector:selector withObject:data withObject:context];
   } else {
     NSLog(@"Tag not implemented: %@", tag);
+    return nil;
   }
-  return view;
 }
 
-+(UIButton *)buttonFromData:(NSDictionary *)data context:(VamlContext *)context {
+# pragma mark - private
+
++(UIButton *)buttonWithData:(NSDictionary *)data context:(VamlContext *)context {
   UIButton *button = [[UIButton alloc] init];
   NSString *onclick = data[@"attrs"][@"onclick"];
   if (onclick) {
@@ -45,6 +29,35 @@
     [button addTarget:context.target action:selector forControlEvents:UIControlEventTouchUpInside];
   }
   return button;
+}
+
++(UILabel *)labelWithData:(NSDictionary *)data context:(VamlContext *)context {
+  UILabel *label = [[UILabel alloc] init];
+  [label setText:data[@"attrs"][@"text"]];
+  return label;
+}
+
++(UITextField *)textfieldWithData:(NSDictionary *)data context:(VamlContext *)context {
+  return [[UITextField alloc] init];
+}
+
++(VamlHorizontalLayout *)horizontalWithData:(NSDictionary *)data context:(VamlContext *)context {
+  return [[VamlHorizontalLayout alloc] init];
+}
+
++(VamlVerticalLayout *)verticalWithData:(NSDictionary *)data context:(VamlContext *)context {
+  return [[VamlVerticalLayout alloc] init];
+}
+
++(UIView *)viewWithData:(NSDictionary *)data context:(VamlContext *)context {
+  NSString *type = data[@"attrs"][@"type"];
+  Class class = NSClassFromString(type);
+  if (class) {
+    return [[class alloc] init];
+  } else {
+    NSLog(@"Custom view not found: %@", type);
+    return nil;
+  }
 }
 
 @end
