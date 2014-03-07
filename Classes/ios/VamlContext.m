@@ -17,6 +17,11 @@
 
 -(void)addView:(UIView *)view {
   self.views[view.vamlId] = view;
+  [view setVamlContext:self];
+}
+
+-(UIView *)viewById:(NSString *)viewId {
+  return self.views[viewId];
 }
 
 @end

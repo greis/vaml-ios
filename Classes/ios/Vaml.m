@@ -39,5 +39,29 @@
   }
 }
 
+@end
+
+@implementation UIView (VamlExtension)
+
+-(void)applyVamlLayout:(NSString *)layout {
+  [Vaml layout:layout view:self];
+}
+
+-(UIView *)findViewById:(NSString *)viewId {
+  VamlContext *context = [self vamlContext];
+  return [context viewById:viewId];
+}
+
+@end
+
+@implementation UIViewController (VamlExtension)
+
+-(void)applyVamlLayout:(NSString *)layout {
+  [self.view applyVamlLayout:layout];
+}
+
+-(UIView *)findViewById:(NSString *)viewId {
+  return [self.view findViewById:viewId];
+}
 
 @end

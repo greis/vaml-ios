@@ -5,5 +5,6 @@
 
 -(NSMutableDictionary *)views;
 -(void)addView:(UIView *)view;
+-(UIView *)viewById:(NSString *)viewId;
 
 @end

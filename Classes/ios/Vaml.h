@@ -2,6 +2,18 @@
 
 @interface Vaml : NSObject
 
-+(void)layout:(NSString *)layout view:(UIView *)view;
+@end
+
+@interface UIView (VamlExtension)
+
+-(void)applyVamlLayout:(NSString *)layout;
+-(UIView *)findViewById:(NSString *)viewId;
+
+@end
+
+@interface UIViewController (VamlExtension)
+
+-(void)applyVamlLayout:(NSString *)layout;
+-(UIView *)findViewById:(NSString *)viewId;
 
 @end

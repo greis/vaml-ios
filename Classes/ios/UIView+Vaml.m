@@ -6,10 +6,19 @@
 @implementation UIView (Vaml)
 
 static char const * const VamlDataKey = "VamlData";
+static char const * const VamlContextKey = "VamlContext";
 
 -(void)setVamlData:(NSDictionary *)vamlData {
   objc_setAssociatedObject(self, VamlDataKey, vamlData, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
   [self setPixateAttributes];
+}
+
+-(void)setVamlContext:(VamlContext *)vamlContext {
+  objc_setAssociatedObject(self, VamlContextKey, vamlContext, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(VamlContext *)vamlContext {
+  return objc_getAssociatedObject(self, VamlContextKey);
 }
 
 -(NSString *)vamlId {
