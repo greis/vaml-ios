@@ -1,10 +1,11 @@
 #import "VamlViewFactory.h"
 #import "VamlVerticalLayout.h"
 #import "VamlHorizontalLayout.h"
+#import "VamlContext.h"
 
 @implementation VamlViewFactory
 
-+(UIView *)viewFromData:(NSDictionary *)data {
++(UIView *)viewFromData:(NSDictionary *)data context:(VamlContext *)context {
  NSString *tag = data[@"tag"];
   UIView *view;
   if ([tag isEqualToString:@"label"]) {
@@ -15,8 +16,7 @@
     UITextField *textField = [[UITextField alloc] init];
     view = textField;
   } else if ([tag isEqualToString:@"button"]) {
-    UIButton *button = [[UIButton alloc] init];
-    view = button;
+    view = [self buttonFromData:data context:context];
   } else if ([tag isEqualToString:@"horizontal"]) {
     VamlHorizontalLayout *layout = [[VamlHorizontalLayout alloc] init];
     view = layout;
@@ -35,6 +35,16 @@
     NSLog(@"Tag not implemented: %@", tag);
   }
   return view;
+}
+
++(UIButton *)buttonFromData:(NSDictionary *)data context:(VamlContext *)context {
+  UIButton *button = [[UIButton alloc] init];
+  NSString *onclick = data[@"attrs"][@"onclick"];
+  if (onclick) {
+    SEL selector = NSSelectorFromString(onclick);
+    [button addTarget:context.target action:selector forControlEvents:UIControlEventTouchUpInside];
+  }
+  return button;
 }
 
 @end

@@ -20,4 +20,8 @@
   NSLog(@"didTapOk");
 }
 
+-(void)didTapUsername {
+  NSLog(@"didTapUsername");
+}
+
 @end

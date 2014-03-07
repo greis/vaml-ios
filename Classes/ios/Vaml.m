@@ -10,12 +10,13 @@
 
 @implementation Vaml
 
-+(void)layout:(NSString *)layout view:(UIView *)view {
++(void)layout:(NSString *)layout view:(UIView *)view target:(id)target {
   VamlTokenizer *tokenizer = [[VamlTokenizer alloc] initWithFileName:layout extension:@"vaml"];
   NSArray *tokens = [tokenizer tokenize];
   VamlTreeBuilder *treeBuilder = [[VamlTreeBuilder alloc] initWithTokens:tokens];
   NSDictionary *tree = [treeBuilder build];
   VamlContext *context = [[VamlContext alloc] init];
+  [context setTarget:target];
   [self setVamlData:tree to:view context:context];
   [VamlConstraintsHandler addConstraintsTo:view context:context];
 }
@@ -26,7 +27,7 @@
   NSArray *children = data[@"children"];
   if (children) {
     for (NSDictionary *child in children) {
-      UIView *subview = [VamlViewFactory viewFromData:child];
+      UIView *subview = [VamlViewFactory viewFromData:child context:context];
       if (subview) {
         [view addSubview:subview];
         [self setVamlData:child to:subview context:context];
@@ -44,7 +45,7 @@
 @implementation UIView (VamlExtension)
 
 -(void)applyVamlLayout:(NSString *)layout {
-  [Vaml layout:layout view:self];
+  [Vaml layout:layout view:self target:self];
 }
 
 -(UIView *)findViewById:(NSString *)viewId {
@@ -57,7 +58,7 @@
 @implementation UIViewController (VamlExtension)
 
 -(void)applyVamlLayout:(NSString *)layout {
-  [self.view applyVamlLayout:layout];
+  [Vaml layout:layout view:self.view target:self];
 }
 
 -(UIView *)findViewById:(NSString *)viewId {
