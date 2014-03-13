@@ -1,6 +1,5 @@
 %root#root
   %vertical#input_group(centerX="parent" centerY="root.centerY")
-    %label(text="Name:")
     %button#username_input(onclick="didTapUsername")
     %button#ok_button
     %view(type="CustomView")
