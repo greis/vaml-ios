@@ -4,7 +4,7 @@
 
 @implementation VamlConstraintsHandler
 
-+(void)addConstraintsTo:(UIView *)rootView context:(VamlContext *)context {
++(void)addConstraintsTo:(UIView *)rootView {
   NSMutableArray *formats = [NSMutableArray array];
   
   id validAttrs = @[@"center",
@@ -23,7 +23,10 @@
                     @"trailing"
                     ];
   
-  [context.views enumerateKeysAndObjectsUsingBlock:^(NSString *viewId, UIView *view, BOOL *stop) {
+  NSMutableDictionary *views = [NSMutableDictionary dictionary];
+  [self populate:views withParentView:rootView];
+  
+  [views enumerateKeysAndObjectsUsingBlock:^(NSString *viewId, UIView *view, BOOL *stop) {
     NSDictionary *attrs = view.vamlAttrs;
     [attrs enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
       if ([validAttrs containsObject:key]) {
@@ -36,7 +39,14 @@
     }];
   }];
   
-  [rootView addConstraintsWithFormats:formats views:context.views metrics:nil];
+  [rootView addConstraintsWithFormats:formats views:views metrics:nil];
+}
+
++(void)populate:(NSMutableDictionary *)views withParentView:(UIView *)rootView {
+  [views setObject:rootView forKey:rootView.vamlId];
+  for (UIView *subview in rootView.subviews) {
+    [self populate:views withParentView:subview];
+  }
 }
 
 @end

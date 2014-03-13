@@ -10,6 +10,7 @@
 		1155416218CA17DF00C8D729 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1155416118CA17DF00C8D729 /* CustomView.m */; };
 		1155416518CA644800C8D729 /* CustomViewFromVaml.m in Sources */ = {isa = PBXBuildFile; fileRef = 1155416418CA644800C8D729 /* CustomViewFromVaml.m */; };
 		1155416718CA649300C8D729 /* custom-view.vaml in Resources */ = {isa = PBXBuildFile; fileRef = 1155416618CA649300C8D729 /* custom-view.vaml */; };
+		1155416A18CA6C3300C8D729 /* RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1155416918CA6C3300C8D729 /* RootController.m */; };
 		11CBA2C318C12BA0003287A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C218C12BA0003287A2 /* Foundation.framework */; };
 		11CBA2C518C12BA0003287A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */; };
 		11CBA2C718C12BA0003287A2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C618C12BA0003287A2 /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 		1155416318CA644800C8D729 /* CustomViewFromVaml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewFromVaml.h; sourceTree = "<group>"; };
 		1155416418CA644800C8D729 /* CustomViewFromVaml.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewFromVaml.m; sourceTree = "<group>"; };
 		1155416618CA649300C8D729 /* custom-view.vaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "custom-view.vaml"; sourceTree = "<group>"; };
+		1155416818CA6C3300C8D729 /* RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootController.h; sourceTree = "<group>"; };
+		1155416918CA6C3300C8D729 /* RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootController.m; sourceTree = "<group>"; };
 		11CBA2BF18C12BA0003287A2 /* Vaml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaml.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CBA2C218C12BA0003287A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				1155416118CA17DF00C8D729 /* CustomView.m */,
 				1155416318CA644800C8D729 /* CustomViewFromVaml.h */,
 				1155416418CA644800C8D729 /* CustomViewFromVaml.m */,
+				1155416818CA6C3300C8D729 /* RootController.h */,
+				1155416918CA6C3300C8D729 /* RootController.m */,
 			);
 			path = Vaml;
 			sourceTree = "<group>";
@@ -234,7 +239,7 @@
 		11CBA2B718C12BA0003287A2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Gabriel Reis";
 				TargetAttributes = {
 					11CBA2D918C12BA0003287A2 = {
@@ -354,6 +359,7 @@
 				11CBA2D318C12BA0003287A2 /* AppDelegate.m in Sources */,
 				1155416218CA17DF00C8D729 /* CustomView.m in Sources */,
 				1155416518CA644800C8D729 /* CustomViewFromVaml.m in Sources */,
+				1155416A18CA6C3300C8D729 /* RootController.m in Sources */,
 				11CBA2F918C12E94003287A2 /* ExampleController.m in Sources */,
 				11CBA2CF18C12BA0003287A2 /* main.m in Sources */,
 			);
@@ -403,7 +409,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -432,7 +437,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -443,7 +448,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -466,7 +470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -482,6 +486,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vaml/Vaml-Prefix.pch";
 				INFOPLIST_FILE = "Vaml/Vaml-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -496,6 +501,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vaml/Vaml-Prefix.pch";
 				INFOPLIST_FILE = "Vaml/Vaml-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -505,7 +511,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C6E9730FEC7946EAB4ABC721 /* Pods-VamlTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Vaml.app/Vaml";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -529,7 +534,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C6E9730FEC7946EAB4ABC721 /* Pods-VamlTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Vaml.app/Vaml";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

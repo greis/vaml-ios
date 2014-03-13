@@ -18,12 +18,12 @@
   VamlContext *context = [[VamlContext alloc] init];
   [context setTarget:target];
   [self setVamlData:tree to:view context:context];
-  [VamlConstraintsHandler addConstraintsTo:view context:context];
+  [VamlConstraintsHandler addConstraintsTo:view];
 }
 
 +(void)setVamlData:(NSDictionary *)data to:(UIView *)view context:(VamlContext *)context {
   [view setVamlData:data];
-  [context addView:view];
+  [view setVamlContext:context];
   NSArray *children = data[@"children"];
   if (children) {
     for (NSDictionary *child in children) {
@@ -49,8 +49,15 @@
 }
 
 -(UIView *)findViewById:(NSString *)viewId {
-  VamlContext *context = [self vamlContext];
-  return [context viewById:viewId];
+  if ([self.vamlId isEqualToString:viewId]) {
+    return self;
+  } else {
+    for (UIView *subview in self.subviews) {
+      id result = [subview findViewById:viewId];
+      if (result) return result;
+    }
+    return nil;
+  }
 }
 
 @end
