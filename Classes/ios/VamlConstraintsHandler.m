@@ -2,51 +2,85 @@
 #import "UIView+Vaml.h"
 #import <ConstraintFormatter/ConstraintFormatter.h>
 
+@interface VamlConstraintsHandler ()
+@property(nonatomic) UIView* rootView;
+@property(nonatomic) NSMutableArray *formats;
+@property(nonatomic) NSMutableDictionary *viewsDict;
+@end
+
+static NSArray *validAttributes;
+
 @implementation VamlConstraintsHandler
 
 +(void)addConstraintsTo:(UIView *)rootView {
-  NSMutableArray *formats = [NSMutableArray array];
-  
-  id validAttrs = @[@"center",
-                    @"edges",
-                    @"size",
-                    @"left",
-                    @"right",
-                    @"top",
-                    @"bottom",
-                    @"width",
-                    @"height",
-                    @"centerX",
-                    @"centerY",
-                    @"baseline",
-                    @"leading",
-                    @"trailing"
-                    ];
-  
-  NSMutableDictionary *views = [NSMutableDictionary dictionary];
-  [self populate:views withParentView:rootView];
-  
-  [views enumerateKeysAndObjectsUsingBlock:^(NSString *viewId, UIView *view, BOOL *stop) {
-    NSDictionary *attrs = view.vamlAttrs;
-    [attrs enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-      if ([validAttrs containsObject:key]) {
-        if ([value isEqualToString:@"parent"]) {
-          value = [NSString stringWithFormat:@"%@.%@", view.superview.vamlId, key];
-        }
-        NSString *constraint = [NSString stringWithFormat:@"%@.%@ == %@", view.vamlId, key, value];
-        [formats addObject:constraint];
-      }
-    }];
-  }];
-  
-  [rootView addConstraintsWithFormats:formats views:views metrics:nil];
+  VamlConstraintsHandler *handler = [[self alloc] initWithRootView:rootView];
+  [handler populateFormatsForView:rootView];
+  [rootView addConstraintsWithFormats:handler.formats views:handler.viewsDict metrics:nil];
 }
 
-+(void)populate:(NSMutableDictionary *)views withParentView:(UIView *)rootView {
-  [views setObject:rootView forKey:rootView.vamlId];
-  for (UIView *subview in rootView.subviews) {
-    [self populate:views withParentView:subview];
+#pragma mark - private
+
+-(id)initWithRootView:(UIView *)rootView {
+  self = [super init];
+  if (self) {
+    [self setRootView:rootView];
+    [self setFormats:[NSMutableArray array]];
+    [self setViewsDict:[NSMutableDictionary dictionary]];
   }
+  return self;
+}
+
+-(void)populateFormatsForView:(UIView *)view {
+  NSDictionary *attrs = view.vamlAttrs;
+  [attrs enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+    if ([self isValidAttribute:key]) {
+      [self addView:view];
+      if ([value isEqualToString:@"parent"]) {
+        [self addView:view.superview];
+        value = [NSString stringWithFormat:@"%@.%@", [self viewId:view.superview], key];
+      }
+      
+      value = [value stringByReplacingOccurrencesOfString:self.rootView.vamlId withString:@"superview"];
+      
+      NSString *constraint = [NSString stringWithFormat:@"%@.%@ == %@", [self viewId:view], key, value];
+      [self.formats addObject:constraint];
+    }
+  }];
+  for (UIView *subview in view.subviews) {
+    [self populateFormatsForView:subview];
+  }
+}
+
+-(BOOL)isValidAttribute:(NSString *)attr {
+  if (!validAttributes) {
+    validAttributes = @[@"center",
+                   @"edges",
+                   @"size",
+                   @"left",
+                   @"right",
+                   @"top",
+                   @"bottom",
+                   @"width",
+                   @"height",
+                   @"centerX",
+                   @"centerY",
+                   @"baseline",
+                   @"leading",
+                   @"trailing"
+                   ];
+    
+  }
+  return [validAttributes containsObject:attr];
+}
+
+-(void)addView:(UIView *)view {
+  if (view != self.rootView) {
+    [self.viewsDict setObject:view forKey:view.vamlId];
+  }
+}
+
+-(NSString *)viewId:(UIView *)view {
+  return view == self.rootView ? @"superview" : view.vamlId;
 }
 
 @end
