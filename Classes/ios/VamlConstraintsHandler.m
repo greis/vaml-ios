@@ -35,9 +35,9 @@ static NSArray *validAttributes;
   [attrs enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
     if ([self isValidAttribute:key]) {
       [self addView:view];
-      if ([value isEqualToString:@"parent"]) {
+      if ([value rangeOfString:@"parent"].location != NSNotFound) {
         [self addView:view.superview];
-        value = [NSString stringWithFormat:@"%@.%@", [self viewId:view.superview], key];
+        value = [value stringByReplacingOccurrencesOfString:@"parent" withString:[self viewId:view.superview]];
       }
       
       value = [value stringByReplacingOccurrencesOfString:self.rootView.vamlId withString:@"superview"];
