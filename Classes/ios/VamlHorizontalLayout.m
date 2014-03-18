@@ -4,26 +4,41 @@
 @implementation VamlHorizontalLayout
 
 -(void)didAddAllSubviews {
-  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-  NSMutableDictionary *views = [NSMutableDictionary dictionary];
+  NSMutableDictionary *subviews = [NSMutableDictionary dictionary];
   NSMutableArray *subviewsName = [NSMutableArray array];
+  
+  int padding = [self padding];
   
   for (UIView *view in self.subviews) {
     [subviewsName addObject:view.vamlId];
-    views[view.vamlId] = view;
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    subviews[view.vamlId] = view;
     [view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:view attribute:NSLayoutAttributeHeight multiplier:1 constant:10];
-    constraint.priority = UILayoutPriorityRequired;
-    [self addConstraint:constraint];
+    [self addConstraint:[NSLayoutConstraint
+                         constraintWithItem:view
+                         attribute:NSLayoutAttributeCenterY
+                         relatedBy:NSLayoutRelationEqual
+                         toItem:self
+                         attribute:NSLayoutAttributeCenterY
+                         multiplier:1
+                         constant:0]];
+    [self addConstraint:[NSLayoutConstraint
+                         constraintWithItem:self
+                         attribute:NSLayoutAttributeHeight
+                         relatedBy:NSLayoutRelationGreaterThanOrEqual
+                         toItem:view
+                         attribute:NSLayoutAttributeHeight
+                         multiplier:1
+                         constant:2 * padding]];
   }
   
-  NSString *format = [NSString stringWithFormat:@"H:|-10-[%@]-10-|", [subviewsName componentsJoinedByString:@"]-10-["]];
-  id constraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:nil views:views];
-  [self addConstraints:constraints];
+  NSString *format = [NSString stringWithFormat:@"H:|-padding-[%@]-padding-|", [subviewsName componentsJoinedByString:@"]-padding-["]];
+  id metrics = @{@"padding": @(padding)};
+  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:subviews]];
 }
 
-
-
+-(int)padding {
+  NSNumber *padding = self.vamlAttrs[@"padding"];
+  return padding ? [padding integerValue] : 0;
+}
 
 @end
