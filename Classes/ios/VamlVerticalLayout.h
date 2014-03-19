@@ -1,5 +1,5 @@
-#import <UIKit/UIKit.h>
+#import "VamlGenericLayout.h"
 
-@interface VamlVerticalLayout : UIView
+@interface VamlVerticalLayout : VamlGenericLayout
 
 @end

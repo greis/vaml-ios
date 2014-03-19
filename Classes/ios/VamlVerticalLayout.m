@@ -1,44 +1,17 @@
 #import "VamlVerticalLayout.h"
-#import "UIView+Vaml.h"
 
 @implementation VamlVerticalLayout
 
--(void)didAddAllSubviews {
-  NSMutableDictionary *subviews = [NSMutableDictionary dictionary];
-  NSMutableArray *subviewsName = [NSMutableArray array];
-  
-  int padding = [self padding];
-  
-  for (UIView *view in self.subviews) {
-    [subviewsName addObject:view.vamlId];
-    subviews[view.vamlId] = view;
-    [view setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:view
-                         attribute:NSLayoutAttributeCenterX
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:self
-                         attribute:NSLayoutAttributeCenterX
-                         multiplier:1
-                         constant:0]];
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:self
-                         attribute:NSLayoutAttributeWidth
-                         relatedBy:NSLayoutRelationGreaterThanOrEqual
-                         toItem:view
-                         attribute:NSLayoutAttributeWidth
-                         multiplier:1
-                         constant:2 * padding]];
-  }
-  
-  NSString *format = [NSString stringWithFormat:@"V:|-padding-[%@]-padding-|", [subviewsName componentsJoinedByString:@"]-padding-["]];
-  id metrics = @{@"padding": @(padding)};
-  [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:subviews]];
+-(NSLayoutAttribute)alignmentAttribute {
+  return NSLayoutAttributeCenterX;
 }
 
--(int)padding {
-  NSNumber *padding = self.vamlAttrs[@"padding"];
-  return padding ? [padding integerValue] : 0;
+-(NSLayoutAttribute)dimensionAttribute {
+  return NSLayoutAttributeWidth;
+}
+
+-(NSString *)orientationForVisualFormat {
+  return @"V";
 }
 
 @end
