@@ -1,5 +1,5 @@
 %root#root
-  %vertical#input_group(centerX="parent.centerX - 20" centerY="root" padding="10")
+  %vertical#input_group(centerX="parent.centerX - 20" centerY="root" padding="10" itemsSpacing="10")
     %button#username_input(onclick="didTapUsername")
     %button#ok_button
     %view(type="CustomView")

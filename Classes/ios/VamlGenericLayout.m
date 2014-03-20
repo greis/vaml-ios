@@ -31,14 +31,19 @@
   
   NSString *format = [NSString stringWithFormat:@"%@:|-padding-[%@]-padding-|",
                       self.orientationForVisualFormat,
-                      [subviewsName componentsJoinedByString:@"]-padding-["]];
-  id metrics = @{@"padding": @(self.padding)};
+                      [subviewsName componentsJoinedByString:@"]-spacing-["]];
+  id metrics = @{@"padding": @(self.padding), @"spacing": @(self.itemsSpacing)};
   [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:subviews]];
 }
 
 -(int)padding {
   NSNumber *padding = self.vamlAttrs[@"padding"];
   return padding ? [padding integerValue] : 0;
+}
+
+-(int)itemsSpacing {
+  NSNumber *spacing = self.vamlAttrs[@"itemsSpacing"];
+  return spacing ? [spacing integerValue] : 0;
 }
 
 -(NSLayoutAttribute)alignmentAttribute {
