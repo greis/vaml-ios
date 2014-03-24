@@ -47,4 +47,14 @@
   return 10;
 }
 
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+  return 6;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+  UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+  [cell setBackgroundColor:indexPath.row % 2 == 0 ? [UIColor lightGrayColor] : [UIColor purpleColor]];
+  return cell;
+}
+
 @end

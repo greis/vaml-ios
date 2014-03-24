@@ -11,6 +11,7 @@
 		1155416518CA644800C8D729 /* CustomViewFromVaml.m in Sources */ = {isa = PBXBuildFile; fileRef = 1155416418CA644800C8D729 /* CustomViewFromVaml.m */; };
 		1155416718CA649300C8D729 /* custom-view.vaml in Resources */ = {isa = PBXBuildFile; fileRef = 1155416618CA649300C8D729 /* custom-view.vaml */; };
 		1155416A18CA6C3300C8D729 /* RootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1155416918CA6C3300C8D729 /* RootController.m */; };
+		117A0F6118E0CF2800C6497E /* VamlCollectionInitializerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 117A0F6018E0CF2800C6497E /* VamlCollectionInitializerSpec.m */; };
 		11BF113918D23AED00FC9B31 /* VamlSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BF113818D23AED00FC9B31 /* VamlSpec.m */; };
 		11CBA2C318C12BA0003287A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C218C12BA0003287A2 /* Foundation.framework */; };
 		11CBA2C518C12BA0003287A2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CBA2C418C12BA0003287A2 /* CoreGraphics.framework */; };
@@ -51,6 +52,7 @@
 		1155416618CA649300C8D729 /* custom-view.vaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "custom-view.vaml"; sourceTree = "<group>"; };
 		1155416818CA6C3300C8D729 /* RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootController.h; sourceTree = "<group>"; };
 		1155416918CA6C3300C8D729 /* RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootController.m; sourceTree = "<group>"; };
+		117A0F6018E0CF2800C6497E /* VamlCollectionInitializerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VamlCollectionInitializerSpec.m; sourceTree = "<group>"; };
 		11BF113818D23AED00FC9B31 /* VamlSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VamlSpec.m; sourceTree = "<group>"; };
 		11CBA2BF18C12BA0003287A2 /* Vaml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vaml.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CBA2C218C12BA0003287A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,6 +182,7 @@
 				11CBA2F218C12C8F003287A2 /* VamlTokenizerSpec.m */,
 				11CBA2F318C12C8F003287A2 /* VamlTreeBuilderSpec.m */,
 				11BF113818D23AED00FC9B31 /* VamlSpec.m */,
+				117A0F6018E0CF2800C6497E /* VamlCollectionInitializerSpec.m */,
 				11CBA2E218C12BA0003287A2 /* Supporting Files */,
 			);
 			path = VamlTests;
@@ -374,6 +377,7 @@
 			files = (
 				11BF113918D23AED00FC9B31 /* VamlSpec.m in Sources */,
 				11CBA2F518C12C8F003287A2 /* VamlTokenizerSpec.m in Sources */,
+				117A0F6118E0CF2800C6497E /* VamlCollectionInitializerSpec.m in Sources */,
 				11CBA2F418C12C8F003287A2 /* VamlAttributesParserSpec.m in Sources */,
 				11CBA2F618C12C8F003287A2 /* VamlTreeBuilderSpec.m in Sources */,
 			);

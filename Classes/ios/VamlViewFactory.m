@@ -2,6 +2,7 @@
 #import "VamlVerticalLayout.h"
 #import "VamlHorizontalLayout.h"
 #import "VamlContext.h"
+#import "VamlCollectionInitializer.h"
 
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
@@ -65,6 +66,10 @@
   [table setDelegate:context.target];
   [table setDataSource:context.target];
   return table;
+}
+
++(UIView *)collectionWithData:(NSDictionary *)data context:(VamlContext *)context {
+  return [VamlCollectionInitializer viewFromData:data context:context];
 }
 
 @end

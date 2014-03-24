@@ -5,6 +5,7 @@
     %view(type="CustomView")
     %view(type="CustomViewFromVaml")
     %table(width="parent.width - 20" height="40")
+    %collection(width="parent.width - 20" height="70" scrollDirection="horizontal")
   %label(text="ABC" left="input_group.right" baseline="input_group.top")
   %notimplemented
   %view(type="notimplemented")
