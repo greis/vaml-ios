@@ -2,4 +2,6 @@
 
 @interface VamlGenericLayout : UIView
 
+-(int)padding;
+
 @end

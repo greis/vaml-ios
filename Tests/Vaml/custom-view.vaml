@@ -1,4 +1,4 @@
 %root(size="layout.size")
-  %horizontal#layout(center="parent" padding="10" itemsSpacing="10")
+  %horizontal#layout(center="parent" padding="5" itemsSpacing="10" itemsAlignment="bottom")
     %label(text="Hello")
-    %label(text="World")
+    %label#world(text="World")

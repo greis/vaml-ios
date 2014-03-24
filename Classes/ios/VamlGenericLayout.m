@@ -18,7 +18,7 @@
                          toItem:self
                          attribute:self.alignmentAttribute
                          multiplier:1
-                         constant:0]];
+                         constant:self.alignmentPadding]];
     [self addConstraint:[NSLayoutConstraint
                          constraintWithItem:self
                          attribute:self.dimensionAttribute
@@ -44,6 +44,12 @@
 -(int)itemsSpacing {
   NSNumber *spacing = self.vamlAttrs[@"itemsSpacing"];
   return spacing ? [spacing integerValue] : 0;
+}
+
+-(int)alignmentPadding {
+  @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                 reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)]
+                               userInfo:nil];
 }
 
 -(NSLayoutAttribute)alignmentAttribute {
