@@ -21,18 +21,19 @@ describe(@"#applyVaml", ^{
     [[[rootView.subviews[1] class] should] equal:[UILabel class]];
     
     VamlVerticalLayout *layout = rootView.subviews[0];
-    [[layout.subviews should] haveCountOf:4];
+    [[layout.subviews should] haveCountOf:5];
     
     [[[layout.subviews[0] class] should] equal:[UIButton class]];
     [[[layout.subviews[1] class] should] equal:[UIButton class]];
     [[[layout.subviews[2] class] should] equal:[CustomView class]];
     [[[layout.subviews[3] class] should] equal:[CustomViewFromVaml class]];
+    [[[layout.subviews[4] class] should] equal:[UITableView class]];
     
     UIButton *buttonWithEvent = layout.subviews[0];
     [[buttonWithEvent.allTargets should] haveCountOf:1];
     [[theValue([buttonWithEvent.allTargets containsObject:controller]) should] beTrue];
     
-    CustomViewFromVaml *customView = [[CustomViewFromVaml alloc] init];
+    CustomViewFromVaml *customView = layout.subviews[3];
     [[customView.subviews should] haveCountOf:1];
     [[[customView.subviews[0] class] should] equal:[VamlHorizontalLayout class]];
     VamlHorizontalLayout *horizontal = customView.subviews[0];
@@ -40,6 +41,12 @@ describe(@"#applyVaml", ^{
     [[horizontal.subviews should] haveCountOf:2];
     [[[horizontal.subviews[0] class] should] equal:[UILabel class]];
     [[[horizontal.subviews[1] class] should] equal:[UILabel class]];
+    
+    UITableView *table = layout.subviews[4];
+    id tableDelegate = table.delegate;
+    [[tableDelegate should] equal:controller];
+    id tableDatasource = table.dataSource;
+    [[tableDatasource should] equal:controller];
     
   });
   

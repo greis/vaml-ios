@@ -60,4 +60,11 @@
   }
 }
 
++(UITableView *)tableWithData:(NSDictionary *)data context:(VamlContext *)context {
+  UITableView *table = [[UITableView alloc] init];
+  [table setDelegate:context.target];
+  [table setDataSource:context.target];
+  return table;
+}
+
 @end
