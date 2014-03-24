@@ -23,7 +23,7 @@
 
 +(UIButton *)buttonWithData:(NSDictionary *)data context:(VamlContext *)context {
   UIButton *button = [[UIButton alloc] init];
-  NSString *onclick = data[@"attrs"][@"onclick"];
+  NSString *onclick = data[@"attrs"][@"onClick"];
   if (onclick) {
     SEL selector = NSSelectorFromString(onclick);
     [button addTarget:context.target action:selector forControlEvents:UIControlEventTouchUpInside];

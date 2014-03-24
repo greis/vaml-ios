@@ -1,6 +1,6 @@
 %root#root
   %vertical#input_group(centerX="parent.centerX - 20" centerY="root" padding="10" itemsSpacing="10" itemsAlignment="left")
-    %button#username_input(onclick="didTapUsername")
+    %button#username_input(onClick="didTapUsername")
     %button#ok_button
     %view(type="CustomView")
     %view(type="CustomViewFromVaml")
