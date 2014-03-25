@@ -21,6 +21,7 @@
 //  ExampleController *controller = [[ExampleController alloc] init];
   UIViewController *root = [[RootController alloc] init];
   UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:root];
+  [controller.navigationBar setTranslucent:NO];
   
   [self.window setRootViewController:controller];
   [self.window makeKeyAndVisible];

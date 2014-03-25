@@ -21,7 +21,7 @@ describe(@"#applyVaml", ^{
     [[[rootView.subviews[1] class] should] equal:[UILabel class]];
     
     VamlVerticalLayout *layout = rootView.subviews[0];
-    [[layout.subviews should] haveCountOf:6];
+    [[layout.subviews should] haveCountOf:7];
     
     [[[layout.subviews[0] class] should] equal:[UIButton class]];
     [[[layout.subviews[1] class] should] equal:[UIButton class]];
@@ -29,6 +29,7 @@ describe(@"#applyVaml", ^{
     [[[layout.subviews[3] class] should] equal:[CustomViewFromVaml class]];
     [[[layout.subviews[4] class] should] equal:[UITableView class]];
     [[[layout.subviews[5] class] should] equal:[UICollectionView class]];
+    [[[layout.subviews[6] class] should] equal:[UIScrollView class]];
     
     UIButton *buttonWithEvent = layout.subviews[0];
     [[buttonWithEvent.allTargets should] haveCountOf:1];
@@ -49,8 +50,10 @@ describe(@"#applyVaml", ^{
     id tableDatasource = table.dataSource;
     [[tableDatasource should] equal:controller];
     
+    UIScrollView *scroll = layout.subviews[6];
+    [[scroll.subviews should] haveCountOf:1];
+    [[[scroll.subviews[0] class] should] equal:[UIImageView class]];
   });
-  
 });
 
 SPEC_END

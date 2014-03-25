@@ -72,4 +72,13 @@
   return [VamlCollectionInitializer viewFromData:data context:context];
 }
 
++(UIView *)scrollWithData:(NSDictionary *)data context:(VamlContext *)context {
+  return [[UIScrollView alloc] init];
+}
+
++(UIView *)imageWithData:(NSDictionary *)data context:(VamlContext *)context {
+  NSString *imageName = data[@"attrs"][@"name"];
+  return [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+}
+
 @end

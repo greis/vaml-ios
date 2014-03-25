@@ -1,11 +1,13 @@
 %root#root
-  %vertical#input_group(centerX="parent.centerX - 20" centerY="root" padding="10" itemsSpacing="10" itemsAlignment="left")
+  %vertical#input_group(centerX="parent.centerX - 20" centerY="root" padding="10" itemsSpacing="5" itemsAlignment="left")
     %button#username_input(onClick="didTapUsername")
     %button#ok_button
     %view(type="CustomView")
     %view(type="CustomViewFromVaml")
     %table(width="parent.width - 20" height="40")
     %collection(width="parent.width - 20" height="70" scrollDirection="horizontal")
+    %scroll(width="100" height="40")
+      %image(name="image" edges="parent")
   %label(text="ABC" left="input_group.right" baseline="input_group.top")
   %notimplemented
   %view(type="notimplemented")
