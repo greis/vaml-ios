@@ -8,7 +8,6 @@
 @property(nonatomic) NSMutableDictionary *viewsDict;
 @end
 
-static NSArray *validAttributes;
 
 @implementation VamlConstraintsHandler
 
@@ -52,6 +51,7 @@ static NSArray *validAttributes;
 }
 
 -(BOOL)isValidAttribute:(NSString *)attr {
+  static NSArray *validAttributes;
   if (!validAttributes) {
     validAttributes = @[@"center",
                    @"edges",
