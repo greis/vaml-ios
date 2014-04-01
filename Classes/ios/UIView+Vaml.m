@@ -21,19 +21,6 @@ static char const * const VamlContextKey = "VamlContext";
   return objc_getAssociatedObject(self, VamlContextKey);
 }
 
--(NSString *)vamlId {
-  NSString *identifier = self.vamlData[@"id"];
-  if (!identifier) {
-    identifier = [NSString stringWithFormat:@"%@_%d", self.class, self.hash];
-  }
-  return identifier;
-}
-
--(NSDictionary *)vamlAttrs {
-  NSDictionary *attrs = self.vamlData[@"attrs"];
-  return attrs ? attrs : @{};
-}
-
 #pragma mark - private
 
 -(NSDictionary *)vamlData {

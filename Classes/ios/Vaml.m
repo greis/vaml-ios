@@ -6,8 +6,6 @@
 #import "VamlConstraintsHandler.h"
 #import "VamlViewFactory.h"
 
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-
 @implementation Vaml
 
 +(void)layout:(NSString *)layout view:(UIView *)view target:(id)target {
@@ -33,11 +31,8 @@
         [self setVamlData:child to:subview context:context];
       }
     }
-    SEL selector = NSSelectorFromString(@"didAddAllSubviews");
-    if ([view respondsToSelector:selector]) {
-      [view performSelector:selector];
-    }
   }
+  [view didLoadFromVaml];
 }
 
 @end
@@ -59,6 +54,21 @@
     return nil;
   }
 }
+
+-(NSString *)vamlId {
+  NSString *identifier = self.vamlData[@"id"];
+  if (!identifier) {
+    identifier = [NSString stringWithFormat:@"%@_%d", self.class, self.hash];
+  }
+  return identifier;
+}
+
+-(NSDictionary *)vamlAttrs {
+  NSDictionary *attrs = self.vamlData[@"attrs"];
+  return attrs ? attrs : @{};
+}
+
+-(void)didLoadFromVaml {}
 
 @end
 

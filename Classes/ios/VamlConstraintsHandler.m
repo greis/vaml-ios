@@ -1,5 +1,5 @@
 #import "VamlConstraintsHandler.h"
-#import "UIView+Vaml.h"
+#import "Vaml.h"
 #import <ConstraintFormatter/ConstraintFormatter.h>
 
 @interface VamlConstraintsHandler ()

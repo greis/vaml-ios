@@ -1,9 +1,9 @@
 #import "VamlGenericLayout.h"
-#import "UIView+Vaml.h"
+#import "Vaml.h"
 
 @implementation VamlGenericLayout
 
--(void)didAddAllSubviews {
+-(void)didLoadFromVaml {
   NSMutableDictionary *subviews = [NSMutableDictionary dictionary];
   NSMutableArray *subviewsName = [NSMutableArray array];
   

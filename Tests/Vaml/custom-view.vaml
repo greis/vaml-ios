@@ -1,4 +1,4 @@
 %root(size="layout.size")
   %horizontal#layout(center="parent" padding="5" itemsSpacing="10" itemsAlignment="bottom")
-    %label(text="Hello")
-    %label#world(text="World")
+    %label#message1
+    %label#message2

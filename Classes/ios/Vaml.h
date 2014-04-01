@@ -6,8 +6,11 @@
 
 @interface UIView (VamlExtension)
 
+-(NSString *)vamlId;
+-(NSDictionary *)vamlAttrs;
 -(void)applyVamlLayout:(NSString *)layout;
 -(UIView *)findViewById:(NSString *)viewId;
+-(void)didLoadFromVaml;
 
 @end
 

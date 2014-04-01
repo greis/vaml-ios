@@ -4,11 +4,7 @@
 
 @interface UIView (Vaml)
 
--(void)setVamlData:(NSDictionary *)vamlData;
--(void)setVamlContext:(VamlContext *)vamlContext;
-
--(VamlContext *)vamlContext;
--(NSString *)vamlId;
--(NSDictionary *)vamlAttrs;
+@property(nonatomic) NSDictionary *vamlData;
+@property(nonatomic) VamlContext *vamlContext;
 
 @end

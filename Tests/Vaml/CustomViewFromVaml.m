@@ -13,4 +13,11 @@
   return self;
 }
 
+-(void)didLoadFromVaml {
+  UILabel *message1 = (UILabel *)[self findViewById:@"message1"];
+  UILabel *message2 = (UILabel *)[self findViewById:@"message2"];
+  [message1 setText:self.vamlAttrs[@"message1"]];
+  [message2 setText:self.vamlAttrs[@"message2"]];
+}
+
 @end

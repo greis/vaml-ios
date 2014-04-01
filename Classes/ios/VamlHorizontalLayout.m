@@ -1,5 +1,5 @@
 #import "VamlHorizontalLayout.h"
-#import "UIView+Vaml.h"
+#import "Vaml.h"
 
 @implementation VamlHorizontalLayout
 
