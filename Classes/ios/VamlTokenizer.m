@@ -64,7 +64,7 @@ enum TokenType {
         break;
       case CLASS:
       case ID:
-        if (!((currentChar >= 'a' && currentChar <= 'z') || currentChar == '_')) tokenEnd = currentIndex;
+        if (!((currentChar >= 'a' && currentChar <= 'z') || (currentChar >= '0' && currentChar <= '9') || currentChar == '_')) tokenEnd = currentIndex;
         break;
       case ATTRS:
         if (currentChar == '}' || currentChar == ')') {
