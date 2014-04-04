@@ -19,11 +19,12 @@
   
   static NSRegularExpression *regex;
   if (!regex) {
-    regex = [NSRegularExpression regularExpressionWithPattern:@"(\\w+)\\s*[:=]\\s*['\"](.*?)['\"]" options:0 error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"(\\w+)\\s*[:=]\\s*(\"[^\"]*\"|'[^']*')" options:0 error:nil];
   }
   [regex enumerateMatchesInString:self.string options:0 range:NSMakeRange(1, self.string.length - 1) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
     NSString *key = [self.string substringWithRange:[result rangeAtIndex:1]];
-    NSString *value = [self.string substringWithRange:[result rangeAtIndex:2]];
+    NSRange valueRange = [result rangeAtIndex:2];
+    NSString *value = [self.string substringWithRange:NSMakeRange(valueRange.location + 1, valueRange.length - 2)];
     attributes[key] = value;
   }];
   

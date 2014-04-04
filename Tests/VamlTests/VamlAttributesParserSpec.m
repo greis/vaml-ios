@@ -16,12 +16,26 @@ describe(@"parse", ^{
       specify(^{
         [[[parser parseString] should] equal:@{@"value": @"abc"}];
       });
+      
+      context(@"double quote inside single quotes", ^{
+        let(expression, ^{ return @"{value: 'abc\"s'}"; });
+        specify(^{
+          [[[parser parseString] should] equal:@{@"value": @"abc\"s"}];
+        });
+      });
     });
     context(@"single attribute with double quotes", ^{
       let(expression, ^{ return @"{value: \"abc\"}"; });
       
       specify(^{
         [[[parser parseString] should] equal:@{@"value": @"abc"}];
+      });
+      
+      context(@"single quote inside double quotes", ^{
+        let(expression, ^{ return @"{value: \"abc's\"}"; });
+        specify(^{
+          [[[parser parseString] should] equal:@{@"value": @"abc's"}];
+        });
       });
     });
     context(@"multiple attributes", ^{
