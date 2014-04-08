@@ -4,5 +4,6 @@
 @interface VamlContext : NSObject
 
 @property(nonatomic, weak) id target;
+@property(nonatomic, strong) NSDictionary *locals;
 
 @end

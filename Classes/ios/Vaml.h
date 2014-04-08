@@ -17,6 +17,7 @@
 @interface UIViewController (VamlExtension)
 
 -(void)applyVamlLayout:(NSString *)layout;
+-(void)applyVamlLayout:(NSString *)layout locals:(NSDictionary *)locals;
 -(UIView *)findViewById:(NSString *)viewId;
 
 @end

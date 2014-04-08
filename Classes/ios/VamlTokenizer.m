@@ -6,7 +6,8 @@ enum TokenType {
   TAG,
   CLASS,
   ID,
-  ATTRS
+  ATTRS,
+  SILENT_SCRIPT
   } INVALID;
 
 @interface VamlTokenizer ()
@@ -21,12 +22,6 @@ enum TokenType {
     [self setContent:content];
   }
   return self;
-}
-
--(id)initWithFileName:(NSString *)fileName extension:(NSString *)extension {
-  NSString* fileRoot = [[NSBundle mainBundle] pathForResource:fileName ofType:extension];
-  NSString* fileContent = [NSString stringWithContentsOfFile:fileRoot encoding:NSUTF8StringEncoding error:nil];
-  return [self initWithContent:fileContent];
 }
 
 -(NSArray *)tokenize {
@@ -124,6 +119,9 @@ enum TokenType {
       tokens[@"attrs"] = [attrParser parseString];
       break;
     }
+    case SILENT_SCRIPT:
+      tokens[@"script"] = [line substringWithRange:range];
+      break;
   }
 }
 
@@ -141,6 +139,8 @@ enum TokenType {
     case '{':
     case '(':
       return ATTRS;
+    case '-':
+      return SILENT_SCRIPT;
     default:
       return INVALID;
   }

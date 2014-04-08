@@ -1,35 +1,18 @@
 #import "Vaml.h"
-#import "VamlTokenizer.h"
-#import "VamlTreeBuilder.h"
 #import "UIView+Vaml.h"
 #import "VamlContext.h"
-#import "VamlConstraintsHandler.h"
-#import "VamlViewFactory.h"
+#import "VamlRenderer.h"
 
 @implementation Vaml
 
-+(void)layout:(NSString *)layout view:(UIView *)view target:(id)target {
-  VamlTokenizer *tokenizer = [[VamlTokenizer alloc] initWithFileName:layout extension:@"vaml"];
-  NSArray *tokens = [tokenizer tokenize];
-  VamlTreeBuilder *treeBuilder = [[VamlTreeBuilder alloc] initWithTokens:tokens];
-  NSDictionary *tree = [treeBuilder build];
++(void)layout:(NSString *)layout view:(UIView *)view target:(id)target locals:(NSDictionary *)locals {
   VamlContext *context = [[VamlContext alloc] init];
   [context setTarget:target];
-  [self setVamlData:tree to:view context:context];
-  [VamlConstraintsHandler addConstraintsTo:view];
-}
-
-+(void)setVamlData:(NSDictionary *)data to:(UIView *)view context:(VamlContext *)context {
-  [view setVamlData:data];
-  [view setVamlContext:context];
-  for (NSDictionary *child in data[@"children"]) {
-    UIView *subview = [VamlViewFactory viewFromData:child context:context];
-    if (subview) {
-      [view addSubview:subview];
-      [self setVamlData:child to:subview context:context];
-    }
-  }
-  [view didLoadFromVaml];
+  [context setLocals:locals];
+  NSString* fileRoot = [[NSBundle mainBundle] pathForResource:layout ofType:@"vaml"];
+  NSString* fileContent = [NSString stringWithContentsOfFile:fileRoot encoding:NSUTF8StringEncoding error:nil];
+  VamlRenderer *renderer = [[VamlRenderer alloc] initWithView:view vaml:fileContent context:context];
+  [renderer render];
 }
 
 @end
@@ -37,7 +20,11 @@
 @implementation UIView (VamlExtension)
 
 -(void)applyVamlLayout:(NSString *)layout {
-  [Vaml layout:layout view:self target:self];
+  [self applyVamlLayout:layout locals:nil];
+}
+
+-(void)applyVamlLayout:(NSString *)layout locals:(NSDictionary *)locals {
+  [Vaml layout:layout view:self target:self locals:locals];
 }
 
 -(UIView *)findViewById:(NSString *)viewId {
@@ -72,7 +59,11 @@
 @implementation UIViewController (VamlExtension)
 
 -(void)applyVamlLayout:(NSString *)layout {
-  [Vaml layout:layout view:self.view target:self];
+  [self applyVamlLayout:layout locals:nil];
+}
+
+-(void)applyVamlLayout:(NSString *)layout locals:(NSDictionary *)locals {
+  [Vaml layout:layout view:self.view target:self locals:locals];
 }
 
 -(UIView *)findViewById:(NSString *)viewId {
