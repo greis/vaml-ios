@@ -22,14 +22,11 @@
 +(void)setVamlData:(NSDictionary *)data to:(UIView *)view context:(VamlContext *)context {
   [view setVamlData:data];
   [view setVamlContext:context];
-  NSArray *children = data[@"children"];
-  if (children) {
-    for (NSDictionary *child in children) {
-      UIView *subview = [VamlViewFactory viewFromData:child context:context];
-      if (subview) {
-        [view addSubview:subview];
-        [self setVamlData:child to:subview context:context];
-      }
+  for (NSDictionary *child in data[@"children"]) {
+    UIView *subview = [VamlViewFactory viewFromData:child context:context];
+    if (subview) {
+      [view addSubview:subview];
+      [self setVamlData:child to:subview context:context];
     }
   }
   [view didLoadFromVaml];
