@@ -39,7 +39,21 @@
 }
 
 +(UITextField *)textfieldWithData:(NSDictionary *)data context:(VamlContext *)context {
-  return [[UITextField alloc] init];
+  UITextField *textField = [[UITextField alloc] init];
+  [textField setPlaceholder:data[@"attrs"][@"placeholder"]];
+  return textField;
+}
+
++(UISegmentedControl *)segmentedcontrolWithData:(NSDictionary *)data context:(VamlContext *)context {
+  int i = 0;
+  NSString *item;
+  NSMutableArray *items = [NSMutableArray array];
+  while ((item = [data[@"attrs"] objectForKey:[NSString stringWithFormat:@"item%d", i]])) {
+    [items addObject:item];
+    i++;
+  }
+  UISegmentedControl *control = [[UISegmentedControl alloc] initWithItems:items];
+  return control;
 }
 
 +(VamlHorizontalLayout *)horizontalWithData:(NSDictionary *)data context:(VamlContext *)context {
