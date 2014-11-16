@@ -8,5 +8,4 @@ Pod::Spec.new do |s|
   s.exclude_files = 'Classes/Exclude'
   s.requires_arc = true
   s.dependency 'ConstraintFormatter', '~> 1.0'
-  s.framework = 'JavaScriptCore'
 end

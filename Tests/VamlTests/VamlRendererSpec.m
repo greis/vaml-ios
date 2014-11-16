@@ -10,7 +10,7 @@ describe(@"#render", ^{
   let(vamlContext, ^id{ return [VamlContext new]; });
   let(vaml, ^id{ return nil; });
   let(locals, ^id{
-    return @{@"foo": @"bar"};
+    return @{@"foo": @(YES)};
   });
   
   let(render, ^id{
@@ -27,7 +27,7 @@ describe(@"#render", ^{
         let(vaml, ^id{ return
           @"%root\n"
           " %label\n"
-          " - if foo == 'bar'\n"
+          " - if foo\n"
           "  %label";
         });
         
@@ -41,7 +41,7 @@ describe(@"#render", ^{
         let(vaml, ^id{ return
           @"%root\n"
           " %label\n"
-          " - if foo == 'zzz'\n"
+          " - if zzz\n"
           "  %label";
         });
         
@@ -56,9 +56,9 @@ describe(@"#render", ^{
       let(vaml, ^id{ return
         @"%root\n"
         " %label\n"
-        " - if foo == 'bar'\n"
+        " - if foo\n"
         "  %label\n"
-        " - if foo == 'bar'\n"
+        " - if foo\n"
         "  %label";
       });
       
@@ -72,10 +72,10 @@ describe(@"#render", ^{
         let(vaml, ^id{ return
           @"%root\n"
           " %label\n"
-          " - if false\n"
+          " - if zzz\n"
           "  %label\n"
           "  %label\n"
-          " - elsif foo == 'bar'\n"
+          " - elsif foo\n"
           "  %label";
         });
         
@@ -89,10 +89,10 @@ describe(@"#render", ^{
         let(vaml, ^id{ return
           @"%root\n"
           " %label\n"
-          " - if false\n"
+          " - if zzz\n"
           "  %label\n"
           "  %label\n"
-          " - elsif foo == 'zzz'\n"
+          " - elsif xxx\n"
           "  %label";
         });
         
@@ -106,10 +106,10 @@ describe(@"#render", ^{
       let(vaml, ^id{ return
         @"%root\n"
         " %label\n"
-        " - if false\n"
+        " - if xxx\n"
         "  %label\n"
         "  %label\n"
-        " - elsif foo == 'zzz'\n"
+        " - elsif zzz\n"
         "  %label\n"
         "  %label\n"
         " - else\n"

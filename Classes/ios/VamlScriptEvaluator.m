@@ -1,12 +1,11 @@
 #import "VamlScriptEvaluator.h"
 #import "VamlContext.h"
-#import <JavaScriptCore/JavaScriptCore.h>
 
 @interface VamlScriptEvaluator ()
 
 @property(nonatomic) BOOL previousIf;
 @property(nonatomic) BOOL lastConditionValue;
-@property(nonatomic) JSContext *jsContext;
+@property(nonatomic) NSDictionary *locals;
 
 @end
 
@@ -27,7 +26,7 @@ typedef enum : NSUInteger {
 
 -(id)initWithScript:(NSString *)script {
   self = [super init];
-  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^-\\s*(if|else|elsif)(.*$)" options:0 error:nil];
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^-\\s*(if|else|elsif)\\s*(.*$)" options:0 error:nil];
   [regex enumerateMatchesInString:script options:0 range:NSMakeRange(0, script.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
     NSString *statement = [script substringWithRange:[result rangeAtIndex:1]];
     if ([statement isEqualToString:@"if"]) {
@@ -49,12 +48,10 @@ typedef enum : NSUInteger {
 -(id)initWithContext:(VamlContext *)context {
   self = [super init];
   if (self) {
-    [self setJsContext:[[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]]];
-    
     if (context.locals) {
-      [context.locals enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        self.jsContext[key] = obj;
-      }];
+      [self setLocals:context.locals];
+    } else {
+      [self setLocals:@{}];
     }
   }
   return self;
@@ -79,12 +76,11 @@ typedef enum : NSUInteger {
 }
 
 -(BOOL)evalCondition:(NSString *)script successBlock:(void(^)())successBlock {
-  JSValue *value = [self.jsContext evaluateScript:script];
-  BOOL result = [value toBool];
-  if (result) {
+  BOOL value = [[self.locals valueForKeyPath:script] boolValue];
+  if (value) {
     successBlock();
   }
-  return result;
+  return value;
 }
 
 @end
