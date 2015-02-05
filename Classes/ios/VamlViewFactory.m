@@ -13,7 +13,9 @@
   SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@WithData:context:", tag]);
   
   if ([self respondsToSelector:selector]) {
-    return [self performSelector:selector withObject:data withObject:context];
+    UIView *view = [self performSelector:selector withObject:data withObject:context];
+    [self applyCommonAttrs:data[@"attrs"] view:view context:context];
+    return view;
   } else {
     NSLog(@"Tag not implemented: %@", tag);
     return nil;
@@ -21,6 +23,12 @@
 }
 
 # pragma mark - private
+
++(void)applyCommonAttrs:(NSDictionary *)attrs view:(UIView *)view context:(VamlContext *)context {
+  if ([@"true" isEqualToString:attrs[@"hidden"]]) {
+    view.hidden = YES;
+  }
+}
 
 +(UIButton *)buttonWithData:(NSDictionary *)data context:(VamlContext *)context {
   UIButton *button = [[UIButton alloc] init];
