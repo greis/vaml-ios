@@ -58,7 +58,7 @@
 -(NSString *)vamlId {
   NSString *identifier = self.vamlData[@"id"];
   if (!identifier) {
-    identifier = [NSString stringWithFormat:@"%@_%d", self.class, self.hash];
+    identifier = [NSString stringWithFormat:@"%@_%d", self.vamlData[@"tag"], self.hash];
   }
   return identifier;
 }
