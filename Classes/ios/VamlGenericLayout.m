@@ -4,6 +4,9 @@
 @implementation VamlGenericLayout
 
 -(void)didLoadFromVaml {
+  if (self.subviews.count == 0) { return; }
+  [self removeConstraints:self.constraints];
+  
   NSMutableDictionary *subviews = [NSMutableDictionary dictionary];
   NSMutableArray *subviewsName = [NSMutableArray array];
   
