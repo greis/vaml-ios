@@ -8,7 +8,7 @@
 +(void)layout:(NSString *)layout view:(UIView *)view target:(id)target locals:(NSDictionary *)locals {
   VamlContext *context = [[VamlContext alloc] init];
   [context setTarget:target];
-  [context setLocals:locals];
+  [context setLocals:[NSMutableDictionary dictionaryWithDictionary:locals ?: @{}]];
   NSString* fileRoot = [[NSBundle mainBundle] pathForResource:layout ofType:@"vaml"];
   NSString* fileContent = [NSString stringWithContentsOfFile:fileRoot encoding:NSUTF8StringEncoding error:nil];
   VamlRenderer *renderer = [[VamlRenderer alloc] initWithView:view vaml:fileContent context:context];

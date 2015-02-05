@@ -5,7 +5,7 @@
 
 @property(nonatomic) BOOL previousIf;
 @property(nonatomic) BOOL lastConditionValue;
-@property(nonatomic) NSDictionary *locals;
+@property(nonatomic) NSMutableDictionary *locals;
 
 @end
 
@@ -13,6 +13,7 @@ typedef enum : NSUInteger {
   VamlStatementIf,
   VamlStatementElsif,
   VamlStatementElse,
+  VamlStatementEach,
 } VamlStatement;
 
 @interface VamlScript : NSObject
@@ -26,7 +27,7 @@ typedef enum : NSUInteger {
 
 -(id)initWithScript:(NSString *)script {
   self = [super init];
-  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^-\\s*(if|else|elsif)\\s*(.*$)" options:0 error:nil];
+  NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^-\\s*(if|else|elsif|each)\\s*(.*$)" options:0 error:nil];
   [regex enumerateMatchesInString:script options:0 range:NSMakeRange(0, script.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
     NSString *statement = [script substringWithRange:[result rangeAtIndex:1]];
     if ([statement isEqualToString:@"if"]) {
@@ -35,6 +36,8 @@ typedef enum : NSUInteger {
       self.statement = VamlStatementElsif;
     } else if ([statement isEqualToString:@"else"]) {
       self.statement = VamlStatementElse;
+    } else if ([statement isEqualToString:@"each"]) {
+      self.statement = VamlStatementEach;
     }
     self.expression = [script substringWithRange:[result rangeAtIndex:2]];
   }];
@@ -48,11 +51,7 @@ typedef enum : NSUInteger {
 -(id)initWithContext:(VamlContext *)context {
   self = [super init];
   if (self) {
-    if (context.locals) {
-      [self setLocals:context.locals];
-    } else {
-      [self setLocals:@{}];
-    }
+    [self setLocals:context.locals];
   }
   return self;
 }
@@ -68,6 +67,8 @@ typedef enum : NSUInteger {
   } else if(self.previousIf && !self.lastConditionValue && script.statement == VamlStatementElse) {
     successBlock();
     self.previousIf = NO;
+  } else if(script.statement == VamlStatementEach) {
+    [self evalArray:script.expression successBlock:successBlock];
   }
 }
 
@@ -81,6 +82,15 @@ typedef enum : NSUInteger {
     successBlock();
   }
   return value;
+}
+
+-(void)evalArray:(NSString *)script successBlock:(void(^)())successBlock {
+  NSArray *array = [self.locals valueForKeyPath:script];
+  for (id object in array) {
+    self.locals[@"object"] = object;
+    successBlock();
+  }
+  [self.locals removeObjectForKey:@"object"];
 }
 
 @end

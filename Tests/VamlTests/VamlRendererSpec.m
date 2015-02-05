@@ -6,16 +6,16 @@ SPEC_BEGIN(VamlRendererSpec)
 
 describe(@"#render", ^{
   
-  let(view, ^id{ return [UIView new]; });
+  let(view, ^UIView*{ return [UIView new]; });
   let(vamlContext, ^id{ return [VamlContext new]; });
   let(vaml, ^id{ return nil; });
   let(locals, ^id{
-    return @{@"foo": @(YES)};
+    return @{@"foo": @(YES), @"list": @[@"1", @"2"]};
   });
   
   let(render, ^id{
     return ^{
-      [vamlContext setLocals:locals];
+      [vamlContext setLocals:[NSMutableDictionary dictionaryWithDictionary:locals]];
       VamlRenderer *renderer = [[VamlRenderer alloc] initWithView:view vaml:vaml context:vamlContext];
       [renderer render];
     };
@@ -120,6 +120,21 @@ describe(@"#render", ^{
         ((void(^)())render)();
         [[[view subviews] should] haveCountOf:2];
       });
+    });
+  });
+  
+  context(@"loop", ^{
+    let(vaml, ^id{ return
+      @"%root\n"
+      " - each list\n"
+      "  %label(text=\"#{object}\")";
+    });
+    
+    it(@"renders multiple views inside the loop", ^{
+      ((void(^)())render)();
+      [[[view subviews] should] haveCountOf:2];
+      [[[view.subviews[0] text] should] equal:@"1"];
+      [[[view.subviews[1] text] should] equal:@"2"];
     });
   });
 });
