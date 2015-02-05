@@ -37,6 +37,7 @@
     SEL selector = NSSelectorFromString(onclick);
     [button addTarget:context.target action:selector forControlEvents:UIControlEventTouchUpInside];
   }
+  [button setTitle:data[@"attrs"][@"title"] forState:UIControlStateNormal];
   return button;
 }
 
@@ -51,6 +52,11 @@
   [textField setPlaceholder:[self evalExpression:data[@"attrs"][@"placeholder"] context:context]];
   [textField setText:[self evalExpression:data[@"attrs"][@"text"] context:context]];
   return textField;
+}
+
++(UITextView *)textWithData:(NSDictionary *)data context:(VamlContext *)context {
+  UITextView *textView = [[UITextView alloc] init];
+  return textView;
 }
 
 +(UISegmentedControl *)segmentedcontrolWithData:(NSDictionary *)data context:(VamlContext *)context {
@@ -89,6 +95,13 @@
   [table setDelegate:context.target];
   [table setDataSource:context.target];
   return table;
+}
+
++(UIPickerView *)pickerWithData:(NSDictionary *)data context:(VamlContext *)context {
+  UIPickerView *picker = [[UIPickerView alloc] init];
+  [picker setDelegate:context.target];
+  [picker setDataSource:context.target];
+  return picker;
 }
 
 +(UIView *)collectionWithData:(NSDictionary *)data context:(VamlContext *)context {
