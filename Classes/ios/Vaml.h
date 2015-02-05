@@ -9,6 +9,7 @@
 -(NSString *)vamlId;
 -(NSDictionary *)vamlAttrs;
 -(void)applyVamlLayout:(NSString *)layout;
+-(void)applyVamlLayout:(NSString *)layout locals:(NSDictionary *)locals;
 -(UIView *)findViewById:(NSString *)viewId;
 -(NSArray *)findViewsByClass:(NSString *)cssClass;
 -(void)didLoadFromVaml;
