@@ -42,7 +42,8 @@ enum TokenType {
   NSMutableDictionary *tokens = [NSMutableDictionary dictionary];
   
   int lastIndex = line.length - 1;
-  int tokenType = [self tokenTypeByChar:[line characterAtIndex:0]];
+  char initialChar = [line characterAtIndex:0];
+  int tokenType = [self tokenTypeByChar:initialChar];
   int currentIndex = 1;
   int tokenStart = 0;
   int tokenEnd = 0;
@@ -62,7 +63,8 @@ enum TokenType {
         if (!((currentChar >= 'a' && currentChar <= 'z') || (currentChar >= '0' && currentChar <= '9') || currentChar == '_')) tokenEnd = currentIndex;
         break;
       case ATTRS:
-        if (currentChar == '}' || currentChar == ')') {
+        if ((initialChar == '{' && currentChar == '}') ||
+            ((initialChar == '(') && currentChar == ')')) {
           currentIndex++; //increment index to capture '}'
           tokenEnd = currentIndex;
         }
@@ -75,7 +77,8 @@ enum TokenType {
       [self addTokenFromRange:NSMakeRange(tokenStart, currentIndex - tokenStart) tokenType:tokenType line:line tokens:tokens];
       
       if (currentIndex <= lastIndex) { //need to check index because ATTRS capture increments currentIndex
-        tokenType = [self tokenTypeByChar:[line characterAtIndex:currentIndex]];
+        initialChar = [line characterAtIndex:currentIndex];
+        tokenType = [self tokenTypeByChar:initialChar];
         tokenStart = currentIndex;
       }
     }

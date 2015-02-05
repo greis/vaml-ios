@@ -80,6 +80,16 @@ describe(@"#tokenize", ^{
                                                  @"attrs": @{@"value": @"attr1"}
                                                  }]];
       });
+      context(@"attr with brackets", ^{
+        let(content, ^{ return @"%label(value = '{attr1}')"; });
+        
+        specify(^{
+          [[[tokenizer tokenize] should] equal:@[@{
+                                                   @"tag": @"label",
+                                                   @"attrs": @{@"value": @"{attr1}"}
+                                                   }]];
+        });
+      });
     });
     context(@"with brackets", ^{
       let(content, ^{ return @"%label{value: 'attr1'}"; });
