@@ -81,12 +81,16 @@
 
 +(UIView *)viewWithData:(NSDictionary *)data context:(VamlContext *)context {
   NSString *type = data[@"attrs"][@"type"];
-  Class class = NSClassFromString(type);
-  if (class) {
-    return [[class alloc] init];
+  if (type) {
+    Class class = NSClassFromString(type);
+    if (class) {
+      return [[class alloc] init];
+    } else {
+      NSLog(@"Custom view not found: %@", type);
+      return nil;
+    }
   } else {
-    NSLog(@"Custom view not found: %@", type);
-    return nil;
+    return [[UIView alloc] init];
   }
 }
 
