@@ -10,6 +10,7 @@
 -(NSDictionary *)vamlAttrs;
 -(void)applyVamlLayout:(NSString *)layout;
 -(UIView *)findViewById:(NSString *)viewId;
+-(NSArray *)findViewsByClass:(NSString *)cssClass;
 -(void)didLoadFromVaml;
 
 @end
@@ -19,5 +20,6 @@
 -(void)applyVamlLayout:(NSString *)layout;
 -(void)applyVamlLayout:(NSString *)layout locals:(NSDictionary *)locals;
 -(UIView *)findViewById:(NSString *)viewId;
+-(NSArray *)findViewsByClass:(NSString *)cssClass;
 
 @end

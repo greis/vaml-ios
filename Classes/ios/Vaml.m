@@ -39,6 +39,22 @@
   }
 }
 
+-(NSArray *)findViewsByClass:(NSString *)cssClass {
+  NSMutableArray *array = [NSMutableArray array];
+  [self findByClass:cssClass views:array];
+  return array;
+}
+
+-(void)findByClass:(NSString *)cssClass views:(NSMutableArray *)array {
+  NSArray *classes = self.vamlData[@"classes"];
+  if ([classes containsObject:cssClass]) {
+    [array addObject:self];
+  }
+  for (UIView *subview in self.subviews) {
+    [subview findByClass:cssClass views:array];
+  }
+}
+
 -(NSString *)vamlId {
   NSString *identifier = self.vamlData[@"id"];
   if (!identifier) {
@@ -68,6 +84,10 @@
 
 -(UIView *)findViewById:(NSString *)viewId {
   return [self.view findViewById:viewId];
+}
+
+-(NSArray *)findViewsByClass:(NSString *)cssClass {
+  return [self.view findViewsByClass:cssClass];
 }
 
 @end
