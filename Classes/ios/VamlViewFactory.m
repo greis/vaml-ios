@@ -28,15 +28,20 @@
   if ([@"true" isEqualToString:attrs[@"hidden"]]) {
     view.hidden = YES;
   }
+  NSString *onclick = attrs[@"onClick"];
+  if (onclick) {
+    SEL selector = NSSelectorFromString(onclick);
+    if ([view isKindOfClass:[UIControl class]]) {
+      [(UIControl *)view addTarget:context.target action:selector forControlEvents:UIControlEventTouchUpInside];
+    } else {
+      UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:context.target action:selector];
+      [view addGestureRecognizer:recognizer];
+    }
+  }
 }
 
 +(UIButton *)buttonWithData:(NSDictionary *)data context:(VamlContext *)context {
   UIButton *button = [[UIButton alloc] init];
-  NSString *onclick = data[@"attrs"][@"onClick"];
-  if (onclick) {
-    SEL selector = NSSelectorFromString(onclick);
-    [button addTarget:context.target action:selector forControlEvents:UIControlEventTouchUpInside];
-  }
   [button setTitle:data[@"attrs"][@"title"] forState:UIControlStateNormal];
   return button;
 }
