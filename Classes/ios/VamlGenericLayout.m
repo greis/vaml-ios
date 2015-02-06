@@ -5,12 +5,20 @@
 
 -(void)didLoadFromVaml {
   if (self.subviews.count == 0) { return; }
+  [self updateConstraints];
+}
+
+-(void)updateConstraints {
   [self removeConstraints:self.constraints];
   
   NSMutableDictionary *subviews = [NSMutableDictionary dictionary];
   NSMutableArray *subviewsName = [NSMutableArray array];
   
+  BOOL showHiddenChild = [@"true" isEqualToString:self.vamlAttrs[@"hiddenItems"]];
+  
+  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
   for (UIView *view in self.subviews) {
+    if (!showHiddenChild && view.hidden) { continue; }
     [subviewsName addObject:view.vamlId];
     subviews[view.vamlId] = view;
     [view setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -37,6 +45,8 @@
                       [subviewsName componentsJoinedByString:@"]-spacing-["]];
   id metrics = @{@"padding": @(self.padding), @"spacing": @(self.itemsSpacing)};
   [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:subviews]];
+  
+  [super updateConstraints];
 }
 
 -(int)padding {

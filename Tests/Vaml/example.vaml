@@ -1,7 +1,9 @@
 %root#root
   %vertical#input_group(centerX="parent.centerX - 20" centerY="root" padding="10" itemsSpacing="5" itemsAlignment="left")
-    %button#username_input(onClick="didTapUsername")
-    %button#ok_button
+    %horizontal#buttons(hiddenItems="false")
+      %button#username_input(onClick="didTapUsername")
+      %button#ok_button
+      %button(title="hidden" hidden="true" width="300")
     %view(type="CustomView")
     %view(type="CustomViewFromVaml" message1="Hello" message2="World")
     %table(width="parent.width - 20" height="40")
