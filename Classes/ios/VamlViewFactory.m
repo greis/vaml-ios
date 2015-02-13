@@ -32,7 +32,8 @@
   if (onclick) {
     SEL selector = NSSelectorFromString(onclick);
     if ([view isKindOfClass:[UIControl class]]) {
-      [(UIControl *)view addTarget:context.target action:selector forControlEvents:UIControlEventTouchUpInside];
+      UIControlEvents events = [view isKindOfClass:[UISegmentedControl class]] ? UIControlEventValueChanged : UIControlEventTouchUpInside;
+      [(UIControl *)view addTarget:context.target action:selector forControlEvents:events];
     } else {
       UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:context.target action:selector];
       [view addGestureRecognizer:recognizer];
