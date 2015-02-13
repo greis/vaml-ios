@@ -12,7 +12,8 @@
   [self.view.layer setBorderColor:[UIColor redColor].CGColor];
   [self.view.layer setBorderWidth:1.];
   
-  [self applyVamlLayout:@"example"];
+  id locals = @{@"user": [@{@"name": @"abc"} mutableCopy]};
+  [self applyVamlLayout:@"example" locals:locals];
   UIButton *okButton = (UIButton *)[self findViewById:@"ok_button"];
   assert(okButton != nil);
   [okButton addTarget:self action:@selector(didTapOk:) forControlEvents:UIControlEventTouchUpInside];

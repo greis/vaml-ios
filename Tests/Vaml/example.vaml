@@ -4,6 +4,8 @@
       %button#username_input(onClick="didTapUsername")
       %button#ok_button
       %button(title="hidden" hidden="true" width="300")
+    %textfield(bind="user.name" width="parent.width - 20")
+    %label(bind="user.name" width="parent.width - 20")
     %view(type="CustomView")
     %view(type="CustomViewFromVaml" message1="Hello" message2="World")
     %table(width="parent.width - 20" height="40")
