@@ -1,14 +1,15 @@
-#import "VamlCollectionInitializer.h"
+#import "UICollectionView+Vaml.h"
+#import "VamlContext.h"
 
-@implementation VamlCollectionInitializer
+@implementation UICollectionView (Vaml)
 
-+(UIView *)viewFromData:(NSDictionary *)data context:(VamlContext *)context {
+-(id)initWithVamlData:(NSDictionary *)data context:(VamlContext *)context {
   NSDictionary *attrs = data[@"attrs"];
-  UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[self collectionViewLayoutFromAttrs:attrs]];
-  [self registerClasses:attrs collection:collection];
-  [collection setDelegate:context.target];
-  [collection setDataSource:context.target];
-  return collection;
+  self = [self initWithFrame:CGRectZero collectionViewLayout:[self.class collectionViewLayoutFromAttrs:attrs]];
+  [self.class registerClasses:attrs collection:self];
+  [self setDelegate:context.target];
+  [self setDataSource:context.target];
+  return self;
 }
 
 +(void)registerClasses:(NSDictionary *)attrs collection:(UICollectionView *)collection {
@@ -42,6 +43,5 @@
   }
   return layout;
 }
-
 
 @end
