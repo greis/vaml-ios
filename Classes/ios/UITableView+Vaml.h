@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@class VamlContext;
+@class VamlData;
 
 @interface UITableView (Vaml)
 
--(id)initWithVamlData:(NSDictionary *)data context:(VamlContext *)context;
+-(id)initWithVamlData:(VamlData *)data;
 
 @end

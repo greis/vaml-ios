@@ -1,19 +1,18 @@
 #import "UICollectionView+Vaml.h"
-#import "VamlContext.h"
+#import "VamlData.h"
 
 @implementation UICollectionView (Vaml)
 
--(id)initWithVamlData:(NSDictionary *)data context:(VamlContext *)context {
-  NSDictionary *attrs = data[@"attrs"];
-  self = [self initWithFrame:CGRectZero collectionViewLayout:[self.class collectionViewLayoutFromAttrs:attrs]];
-  [self.class registerClasses:attrs collection:self];
-  [self setDelegate:context.target];
-  [self setDataSource:context.target];
+-(id)initWithVamlData:(VamlData *)data {
+  self = [self initWithFrame:CGRectZero collectionViewLayout:[self.class collectionViewLayoutFromData:data]];
+  [self.class registerClasses:data collection:self];
+  [self setDelegate:data.target];
+  [self setDataSource:data.target];
   return self;
 }
 
-+(void)registerClasses:(NSDictionary *)attrs collection:(UICollectionView *)collection {
-  NSString *cell = attrs[@"cell"];
++(void)registerClasses:(VamlData *)data collection:(UICollectionView *)collection {
+  NSString *cell = data[@"cell"];
   if (cell) {
     [[cell componentsSeparatedByString:@"|"] enumerateObjectsUsingBlock:^(NSString *pair, NSUInteger idx, BOOL *stop) {
       NSArray *components = [pair componentsSeparatedByString:@":"];
@@ -31,13 +30,13 @@
   }
 }
 
-+(UICollectionViewLayout *)collectionViewLayoutFromAttrs:(NSDictionary *)attrs {
++(UICollectionViewLayout *)collectionViewLayoutFromData:(VamlData *)data {
   UICollectionViewLayout *layout;
-  if (attrs[@"layout"]) {
-    layout = [[NSClassFromString(attrs[@"layout"]) alloc] init];
+  if (data[@"layout"]) {
+    layout = [[NSClassFromString(data[@"layout"]) alloc] init];
   } else {
     layout = [[UICollectionViewFlowLayout alloc] init];
-    if ([@"horizontal" isEqualToString:attrs[@"scrollDirection"]]) {
+    if ([@"horizontal" isEqualToString:data[@"scrollDirection"]]) {
       [((UICollectionViewFlowLayout *)layout) setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     }
   }

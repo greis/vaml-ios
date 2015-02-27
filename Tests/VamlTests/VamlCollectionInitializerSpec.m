@@ -1,5 +1,6 @@
 #import "Kiwi.h"
 #import "VamlContext.h"
+#import "VamlData.h"
 #import "UICollectionView+Vaml.h"
 #import <objc/runtime.h>
 
@@ -39,7 +40,8 @@ SPEC_BEGIN(VamlCollectionInitializerSpec)
 let(attrs, ^id{ return @{}; });
 let(data, ^id{ return @{@"tag": @"collection", @"attrs": attrs}; });
 let(vamlContext, ^id{ return [[VamlContext alloc] init]; });
-let(subject, ^id{ return [[UICollectionView alloc] initWithVamlData:data context:vamlContext]; });
+let(vamlData, ^id{ return [[VamlData alloc] initWithData:data context:vamlContext]; });
+let(subject, ^id{ return [[UICollectionView alloc] initWithVamlData:vamlData]; });
 
 context(@"without layout", ^{
   context(@"without scrollDirection", ^{

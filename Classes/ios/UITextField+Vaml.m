@@ -1,14 +1,13 @@
 #import "UITextField+Vaml.h"
 #import "UIView+Vaml.h"
-#import "VamlContext.h"
-#import "VamlExpressionEvaluator.h"
+#import "VamlData.h"
 
 @implementation UITextField (Vaml)
 
--(id)initWithVamlData:(NSDictionary *)data context:(VamlContext *)context {
+-(id)initWithVamlData:(VamlData *)data {
   self = [self init];
-  [self setPlaceholder:[VamlExpressionEvaluator evalExpression:data[@"attrs"][@"placeholder"] context:context]];
-  [self setText:[VamlExpressionEvaluator evalExpression:data[@"attrs"][@"text"] context:context]];
+  [self setPlaceholder:data[@"placeholder"]];
+  [self setText:data[@"text"]];
   return self;
 }
 

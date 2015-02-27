@@ -10,12 +10,13 @@
 #import "UICollectionView+Vaml.h"
 #import "UIPickerView+Vaml.h"
 #import "UIImageView+Vaml.h"
+#import "VamlData.h"
 
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 @implementation VamlViewFactory
 
-+(UIView *)viewFromData:(NSDictionary *)data context:(VamlContext *)context {
++(UIView *)viewFromData:(NSDictionary *)dictionary context:(VamlContext *)context {
   static id mapping;
   if (!mapping) {
     mapping = @{
@@ -34,59 +35,60 @@
                 };
   }
   
-  NSString *tag = data[@"tag"];
-  Class class = mapping[tag];
+  VamlData *data = [[VamlData alloc] initWithData:dictionary context:context];
+  
+  Class class = mapping[data.tag];
   UIView *view;
   if (class) {
-    view = [self vamlViewFromClass:class data:data context:context];
-  } else if ([tag isEqualToString:@"view"]) {
-    view = [self initViewWithData:data context:context];
+    view = [self vamlViewFromClass:class data:data];
+  } else if ([data.tag isEqualToString:@"view"]) {
+    view = [self initViewWithData:data];
   }
   
   if (view != nil) {
-    [self applyCommonAttrs:data[@"attrs"] view:view context:context];
+    [self applyCommonAttrs:data view:view];
     return view;
   } else {
-    NSLog(@"Tag not implemented: %@", tag);
+    NSLog(@"Tag not implemented: %@", data.tag);
     return nil;
   }
 }
 
 # pragma mark - private
 
-+(UIView *)vamlViewFromClass:(Class)class data:(NSDictionary *)data context:(VamlContext *)context {
-  SEL selector = NSSelectorFromString(@"initWithVamlData:context:");
++(UIView *)vamlViewFromClass:(Class)class data:(VamlData *)data {
+  SEL selector = NSSelectorFromString(@"initWithVamlData:");
   id view = [class alloc];
   if ([view respondsToSelector:selector]) {
-    return [view performSelector:selector withObject:data withObject:context];
+    return [view performSelector:selector withObject:data];
   } else {
     return [view init];
   }
 }
 
-+(void)applyCommonAttrs:(NSDictionary *)attrs view:(UIView *)view context:(VamlContext *)context {
-  if ([@"true" isEqualToString:attrs[@"hidden"]]) {
++(void)applyCommonAttrs:(VamlData *)data view:(UIView *)view {
+  if ([@"true" isEqualToString:data[@"hidden"]]) {
     view.hidden = YES;
   }
-  NSString *onclick = attrs[@"onClick"];
+  NSString *onclick = data[@"onClick"];
   if (onclick) {
     SEL selector = NSSelectorFromString(onclick);
     if ([view isKindOfClass:[UIControl class]]) {
       UIControlEvents events = [view isKindOfClass:[UISegmentedControl class]] ? UIControlEventValueChanged : UIControlEventTouchUpInside;
-      [(UIControl *)view addTarget:context.target action:selector forControlEvents:events];
+      [(UIControl *)view addTarget:data.target action:selector forControlEvents:events];
     } else {
-      UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:context.target action:selector];
+      UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:data.target action:selector];
       [view addGestureRecognizer:recognizer];
     }
   }
 }
 
-+(UIView *)initViewWithData:(NSDictionary *)data context:(VamlContext *)context {
-  NSString *type = data[@"attrs"][@"type"];
++(UIView *)initViewWithData:(VamlData *)data {
+  NSString *type = data[@"type"];
   if (type) {
     Class class = NSClassFromString(type);
     if (class) {
-      return [self vamlViewFromClass:class data:data context:context];
+      return [self vamlViewFromClass:class data:data];
     } else {
       NSLog(@"Custom view not found: %@", type);
       return nil;

@@ -1,12 +1,12 @@
 #import "UIPickerView+Vaml.h"
-#import "VamlContext.h"
+#import "VamlData.h"
 
 @implementation UIPickerView (Vaml)
 
--(id)initWithVamlData:(NSDictionary *)data context:(VamlContext *)context {
+-(id)initWithVamlData:(VamlData *)data {
   self = [self init];
-  [self setDelegate:context.target];
-  [self setDataSource:context.target];
+  [self setDelegate:data.target];
+  [self setDataSource:data.target];
   return self;
 }
 

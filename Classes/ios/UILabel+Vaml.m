@@ -1,12 +1,11 @@
 #import "UILabel+Vaml.h"
-#import "VamlExpressionEvaluator.h"
-#import "VamlContext.h"
+#import "VamlData.h"
 
 @implementation UILabel (Vaml)
 
--(id)initWithVamlData:(NSDictionary *)data context:(VamlContext *)context {
+-(id)initWithVamlData:(VamlData *)data {
   self = [self init];
-  [self setText:[VamlExpressionEvaluator evalExpression:data[@"attrs"][@"text"] context:context]];
+  [self setText:data[@"text"]];
   return self;
 }
 
