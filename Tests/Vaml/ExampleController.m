@@ -12,7 +12,7 @@
   [self.view.layer setBorderColor:[UIColor redColor].CGColor];
   [self.view.layer setBorderWidth:1.];
   
-  [self applyVamlLayout:@"example"];
+  [self applyVamlLayout:@"example" locals:@{@"message": @"ABC"}];
   UIButton *okButton = (UIButton *)[self findViewById:@"ok_button"];
   assert(okButton != nil);
   [okButton addTarget:self action:@selector(didTapOk:) forControlEvents:UIControlEventTouchUpInside];

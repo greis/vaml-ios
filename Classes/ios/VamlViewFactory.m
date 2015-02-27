@@ -79,7 +79,6 @@
       [view addGestureRecognizer:recognizer];
     }
   }
-  }
 }
 
 +(UIView *)initViewWithData:(NSDictionary *)data context:(VamlContext *)context {
