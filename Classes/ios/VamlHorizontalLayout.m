@@ -4,7 +4,7 @@
 @implementation VamlHorizontalLayout
 
 -(NSLayoutAttribute)alignmentAttribute {
-  NSString *align = self.vamlAttrs[@"itemsAlignment"];
+  NSString *align = self.vamlData[@"itemsAlignment"];
   if ([@"top" isEqualToString:align]) {
     return NSLayoutAttributeTop;
   } else if ([@"bottom" isEqualToString:align]) {
@@ -14,7 +14,7 @@
 }
 
 -(int)alignmentPadding {
-  NSString *align = self.vamlAttrs[@"itemsAlignment"];
+  NSString *align = self.vamlData[@"itemsAlignment"];
   if ([@"top" isEqualToString:align]) {
     return self.padding;
   } else if ([@"bottom" isEqualToString:align]) {

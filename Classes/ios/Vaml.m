@@ -1,7 +1,7 @@
 #import "Vaml.h"
-#import "UIView+Vaml.h"
 #import "VamlContext.h"
 #import "VamlRenderer.h"
+#import <objc/runtime.h>
 
 @implementation Vaml
 
@@ -18,6 +18,16 @@
 @end
 
 @implementation UIView (VamlExtension)
+
+static char const * const VamlDataKey = "VamlData";
+
+-(void)setVamlData:(VamlData *)vamlData {
+  objc_setAssociatedObject(self, VamlDataKey, vamlData, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(VamlData *)vamlData {
+  return objc_getAssociatedObject(self, VamlDataKey);
+}
 
 -(void)applyVamlLayout:(NSString *)layout {
   [self applyVamlLayout:layout locals:nil];
@@ -50,7 +60,7 @@
 }
 
 -(void)findByClass:(NSString *)cssClass views:(NSMutableArray *)array {
-  NSArray *classes = self.vamlData[@"classes"];
+  NSArray *classes = self.vamlData.classes;
   if ([classes containsObject:cssClass]) {
     [array addObject:self];
   }
@@ -60,18 +70,13 @@
 }
 
 -(NSString *)vamlId {
-  NSString *identifier = self.vamlData[@"id"];
+  NSString *identifier = self.vamlData.viewId;
   if (!identifier) {
-    identifier = self.vamlData[@"tag"];
+    identifier = self.vamlData.tag;
     if (!identifier) { identifier = @"view"; }
     identifier = [NSString stringWithFormat:@"%@_%d", identifier, abs(self.hash)];
   }
   return identifier;
-}
-
--(NSDictionary *)vamlAttrs {
-  NSDictionary *attrs = self.vamlData[@"attrs"];
-  return attrs ? attrs : @{};
 }
 
 -(void)didLoadFromVaml {}

@@ -1,5 +1,4 @@
 #import "UITextField+Vaml.h"
-#import "UIView+Vaml.h"
 #import "VamlData.h"
 
 @implementation UITextField (Vaml)

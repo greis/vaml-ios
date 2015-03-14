@@ -30,7 +30,7 @@
 }
 
 -(void)populateFormatsForView:(UIView *)view {
-  NSDictionary *attrs = view.vamlAttrs;
+  NSDictionary *attrs = view.vamlData.attrs;
   [attrs enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
     if ([self isValidAttribute:key]) {
       [self addView:view];

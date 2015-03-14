@@ -15,7 +15,7 @@
     NSMutableDictionary *subviews = [NSMutableDictionary dictionary];
     NSMutableArray *subviewsName = [NSMutableArray array];
     
-    BOOL showHiddenChild = [@"true" isEqualToString:self.vamlAttrs[@"hiddenItems"]];
+    BOOL showHiddenChild = [@"true" isEqualToString:self.vamlData[@"hiddenItems"]];
     
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     for (UIView *view in self.subviews) {
@@ -52,12 +52,12 @@
 }
 
 -(int)padding {
-  NSNumber *padding = self.vamlAttrs[@"padding"];
+  NSNumber *padding = self.vamlData[@"padding"];
   return padding ? [padding integerValue] : 0;
 }
 
 -(int)itemsSpacing {
-  NSNumber *spacing = self.vamlAttrs[@"itemsSpacing"];
+  NSNumber *spacing = self.vamlData[@"itemsSpacing"];
   return spacing ? [spacing integerValue] : 0;
 }
 

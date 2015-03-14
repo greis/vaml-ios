@@ -4,7 +4,7 @@
 @implementation UISegmentedControl (Vaml)
 
 -(id)initWithVamlData:(VamlData *)data {
-  NSArray *items = data[@"items"];
+  NSArray *items = [data attrFromLocals:@"items"];
   if (items) {
     return [self initWithItems:items];
   } else {

@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "VamlData.h"
 
 @interface Vaml : NSObject
 
@@ -6,8 +7,8 @@
 
 @interface UIView (VamlExtension)
 
+@property(nonatomic) VamlData *vamlData;
 -(NSString *)vamlId;
--(NSDictionary *)vamlAttrs;
 -(void)applyVamlLayout:(NSString *)layout;
 -(void)applyVamlLayout:(NSString *)layout locals:(NSDictionary *)locals;
 -(void)applyVamlLayout:(NSString *)layout locals:(NSDictionary *)locals target:(id)target;

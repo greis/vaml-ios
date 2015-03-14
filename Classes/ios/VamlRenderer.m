@@ -1,11 +1,11 @@
 #import "VamlRenderer.h"
 #import "Vaml.h"
-#import "UIView+Vaml.h"
 #import "VamlViewFactory.h"
 #import "VamlScriptEvaluator.h"
 #import "VamlTokenizer.h"
 #import "VamlTreeBuilder.h"
 #import "VamlConstraintsHandler.h"
+#import "VamlData.h"
 
 @interface VamlRenderer ()
 @property(nonatomic) NSString *vaml;
@@ -33,23 +33,24 @@
   NSArray *tokens = [tokenizer tokenize];
   VamlTreeBuilder *treeBuilder = [[VamlTreeBuilder alloc] initWithTokens:tokens];
   NSDictionary *tree = [treeBuilder build];
-  [self setVamlData:tree];
+  VamlData *data = [[VamlData alloc] initWithData:tree context:self.context];
+  [self setVamlData:data];
   [VamlConstraintsHandler addConstraintsTo:self.viewsStack.firstObject];
 }
 
--(void)setVamlData:(NSDictionary *)data {
+-(void)setVamlData:(VamlData *)data {
   [self.parentView setVamlData:data];
-  [self.parentView setVamlContext:self.context];
+  [self setPixateAttributes];
   [self handleChildren:data];
   [self.parentView didLoadFromVaml];
 }
 
--(void)handleChildren:(NSDictionary *)data {
+-(void)handleChildren:(VamlData *)data {
   [self.scriptEvaluator reset];
-  for (NSDictionary *child in data[@"children"]) {
-    if (child[@"tag"]) {
+  for (VamlData *child in data.children) {
+    if (child.tag) {
       [self.scriptEvaluator reset];
-      UIView *subview = [VamlViewFactory viewFromData:child context:self.context];
+      UIView *subview = [VamlViewFactory viewFromData:child];
       if (subview) {
         [self.parentView addSubview:subview];
         [self.viewsStack addObject:subview];
@@ -57,7 +58,7 @@
         [self.viewsStack removeObject:subview];
       }
     } else {
-      [self.scriptEvaluator eval:child[@"script"] successBlock:^{
+      [self.scriptEvaluator eval:child.script successBlock:^{
         [self handleChildren:child];
       }];
     }
@@ -67,5 +68,23 @@
 -(UIView *)parentView {
   return [self.viewsStack lastObject];
 }
+
+-(void)setPixateAttributes {
+  UIView *view = self.parentView;
+  BOOL pixatePresent = NSClassFromString(@"PixateFreestyle") != nil;
+  if (pixatePresent) {
+    if (view.vamlData.viewId) {
+      SEL selector = NSSelectorFromString(@"setStyleId:");
+      void (*func)(id, SEL, NSString *) = (void *)[view methodForSelector:selector];
+      func(view, selector, view.vamlData.viewId);
+    }
+    if (view.vamlData.classes) {
+      SEL selector = NSSelectorFromString(@"setStyleClass:");
+      void (*func)(id, SEL, NSString *) = (void *)[view methodForSelector:selector];
+      func(view, selector, [view.vamlData.classes componentsJoinedByString:@" "]);
+    }
+  }
+}
+
 
 @end

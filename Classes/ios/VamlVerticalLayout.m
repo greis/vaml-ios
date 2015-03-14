@@ -4,7 +4,7 @@
 @implementation VamlVerticalLayout
 
 -(NSLayoutAttribute)alignmentAttribute {
-  NSString *align = self.vamlAttrs[@"itemsAlignment"];
+  NSString *align = self.vamlData[@"itemsAlignment"];
   if ([@"right" isEqualToString:align]) {
     return NSLayoutAttributeRight;
   } else if ([@"left" isEqualToString:align]) {
@@ -14,7 +14,7 @@
 }
 
 -(int)alignmentPadding {
-  NSString *align = self.vamlAttrs[@"itemsAlignment"];
+  NSString *align = self.vamlData[@"itemsAlignment"];
   if ([@"right" isEqualToString:align]) {
     return -self.padding;
   } else if ([@"left" isEqualToString:align]) {

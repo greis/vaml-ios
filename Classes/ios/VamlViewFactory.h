@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class VamlContext;
+@class VamlData;
 
 @interface VamlViewFactory : NSObject
 
-+(UIView *)viewFromData:(NSDictionary *)data context:(VamlContext *)context;
++(UIView *)viewFromData:(VamlData *)data;
 
 @end

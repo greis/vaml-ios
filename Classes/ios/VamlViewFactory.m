@@ -16,7 +16,7 @@
 
 @implementation VamlViewFactory
 
-+(UIView *)viewFromData:(NSDictionary *)dictionary context:(VamlContext *)context {
++(UIView *)viewFromData:(VamlData *)data {
   static id mapping;
   if (!mapping) {
     mapping = @{
@@ -34,8 +34,6 @@
                 @"image": [UIImageView class]
                 };
   }
-  
-  VamlData *data = [[VamlData alloc] initWithData:dictionary context:context];
   
   Class class = mapping[data.tag];
   UIView *view;
