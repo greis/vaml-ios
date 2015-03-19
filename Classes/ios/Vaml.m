@@ -60,7 +60,7 @@
   if (!identifier) {
     identifier = self.vamlData[@"tag"];
     if (!identifier) { identifier = @"view"; }
-    identifier = [NSString stringWithFormat:@"%@_%d", identifier, self.hash];
+    identifier = [NSString stringWithFormat:@"%@_%d", identifier, abs(self.hash)];
   }
   return identifier;
 }
