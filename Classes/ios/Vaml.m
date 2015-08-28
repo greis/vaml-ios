@@ -27,6 +27,10 @@
   [Vaml layout:layout view:self target:self locals:locals];
 }
 
+-(void)applyVamlLayout:(NSString *)layout locals:(NSDictionary *)locals target:(id)target {
+  [Vaml layout:layout view:self target:target locals:locals];
+}
+
 -(UIView *)findViewById:(NSString *)viewId {
   if ([self.vamlId isEqualToString:viewId]) {
     return self;
