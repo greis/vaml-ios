@@ -1,6 +1,10 @@
 #import "VamlGenericLayout.h"
 #import "Vaml.h"
 
+@interface VamlGenericLayout ()
+@property(nonatomic) NSMutableArray *appliedConstraints;
+@end
+
 @implementation VamlGenericLayout
 
 -(void)didLoadFromVaml {
@@ -8,8 +12,16 @@
   [self updateConstraints];
 }
 
+-(NSMutableArray *)appliedConstraints {
+  if (!_appliedConstraints) {
+    _appliedConstraints = [NSMutableArray array];
+  }
+  return _appliedConstraints;
+}
+
 -(void)updateConstraints {
-  [self removeConstraints:self.constraints];
+  [self removeConstraints:self.appliedConstraints];
+  [self.appliedConstraints removeAllObjects];
   
   if (self.subviews.count > 0) {
     NSMutableDictionary *subviews = [NSMutableDictionary dictionary];
@@ -23,29 +35,37 @@
       [subviewsName addObject:view.vamlId];
       subviews[view.vamlId] = view;
       [view setTranslatesAutoresizingMaskIntoConstraints:NO];
-      [self addConstraint:[NSLayoutConstraint
-                           constraintWithItem:view
-                           attribute:self.alignmentAttribute
-                           relatedBy:NSLayoutRelationEqual
-                           toItem:self
-                           attribute:self.alignmentAttribute
-                           multiplier:1
-                           constant:self.alignmentPadding]];
-      [self addConstraint:[NSLayoutConstraint
+      NSLayoutConstraint *c = [NSLayoutConstraint
+                                                   constraintWithItem:view
+                                                   attribute:self.alignmentAttribute
+                                                   relatedBy:NSLayoutRelationEqual
+                                                   toItem:self
+                                                   attribute:self.alignmentAttribute
+                                                   multiplier:1
+                                                   constant:self.alignmentPadding];
+      c.priority = UILayoutPriorityRequired;
+      [self.appliedConstraints addObject:c];
+      [self addConstraint:c];
+      NSLayoutConstraint *constraint = [NSLayoutConstraint
                            constraintWithItem:self
                            attribute:self.dimensionAttribute
                            relatedBy:NSLayoutRelationGreaterThanOrEqual
                            toItem:view
                            attribute:self.dimensionAttribute
                            multiplier:1
-                           constant:2 * self.padding]];
+                           constant:2 * self.padding];
+      constraint.priority = UILayoutPriorityDefaultLow;
+      [self addConstraint:constraint];
+      [self.appliedConstraints addObject:constraint];
     }
     
     NSString *format = [NSString stringWithFormat:@"%@:|-padding-[%@]-padding-|",
                         self.orientationForVisualFormat,
                         [subviewsName componentsJoinedByString:@"]-spacing-["]];
     id metrics = @{@"padding": @(self.padding), @"spacing": @(self.itemsSpacing)};
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:subviews]];
+    NSArray *visualConstraints = [NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:metrics views:subviews];
+    [self addConstraints:visualConstraints];
+    [self.appliedConstraints addObjectsFromArray:visualConstraints];
   }
   
   [super updateConstraints];
